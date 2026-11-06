@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>力学三把钥匙，什么时候用哪一把 · 浩然成长空间</title>
+<style>
+  :root {
+    --bg: #f7f7f5;
+    --card: #ffffff;
+    --text: #1a1a1a;
+    --muted: #6b6b66;
+    --line: #e5e4df;
+    --accent: #0f6e56;
+    --accent-soft: #e1f5ee;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: -apple-system, "PingFang SC", "Microsoft YaHei", "Segoe UI", sans-serif;
+    line-height: 1.85;
+    -webkit-font-smoothing: antialiased;
+  }
+  .wrap { max-width: 720px; margin: 0 auto; padding: 0 24px; }
+
+  header { padding: 48px 0 20px; }
+  .back { color: var(--accent); text-decoration: none; font-size: 14px; }
+  .crumb { color: var(--muted); font-size: 13px; margin-top: 16px; }
+  h1 { font-size: 27px; font-weight: 600; line-height: 1.4; margin-top: 10px; }
+  .meta { color: var(--muted); font-size: 13px; margin-top: 10px; }
+
+  article { padding: 8px 0 48px; }
+  article h2 {
+    font-size: 19px; font-weight: 600; margin: 36px 0 14px;
+    padding-left: 12px; border-left: 3px solid var(--accent);
+  }
+  article h3 { font-size: 16px; font-weight: 600; margin: 26px 0 10px; }
+  article p { margin: 12px 0; font-size: 15.5px; color: #2a2a2a; }
+  article blockquote {
+    margin: 18px 0; padding: 14px 18px;
+    background: var(--accent-soft);
+    border-left: 3px solid var(--accent);
+    border-radius: 0 8px 8px 0;
+    color: #333;
+    font-size: 15px;
+  }
+  article table {
+    width: 100%; border-collapse: collapse; margin: 18px 0;
+    font-size: 14px;
+  }
+  article th, article td {
+    border: 1px solid var(--line); padding: 10px 12px; text-align: left;
+  }
+  article th { background: #f0efeb; font-weight: 600; }
+  article ul, article ol { margin: 12px 0 12px 24px; }
+  article li { margin: 8px 0; font-size: 15px; color: #2a2a2a; }
+  article strong { color: var(--accent); }
+  article .hr { border: none; border-top: 1px solid var(--line); margin: 40px 0 24px; }
+
+  .next {
+    background: var(--card); border: 1px solid var(--line);
+    border-radius: 12px; padding: 20px 22px; margin-bottom: 40px;
+  }
+  .next h2 { font-size: 16px; font-weight: 600; margin-bottom: 8px; }
+  .next p { font-size: 14px; color: var(--muted); }
+
+  footer { padding: 16px 0 48px; color: var(--muted); font-size: 13px; border-top: 1px solid var(--line); }
+  footer a { color: var(--accent); text-decoration: none; }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <a class="back" href="physics.html">← 物理教学</a>
+      <div class="crumb">物理教学 · 力学</div>
+      <h1>力学三把钥匙，什么时候用哪一把</h1>
+      <div class="meta">专题：力学中三大观点的综合应用 · 高三二轮复习</div>
+    </header>
+
+    <article>
+      <p>这篇文章不搬运讲义，也不讲题解。它只回答一个学生问得最多、也最崩溃的问题。</p>
+
+      <h2>一个真实场景</h2>
+      <p>高三二轮复习，学生小张拿着卷子来问我：</p>
+      <blockquote>"老师，这道题我用动量守恒做，算出来跟答案对不上。是不是动量守恒用错了？"</blockquote>
+      <p>我看了一眼，题是一道「木块冲上斜面」：</p>
+      <blockquote>一木块以初速度 v₀ 冲上粗糙斜面，求它能上升的最大高度。</blockquote>
+      <p>我的回答是："你这道题根本不该用动量守恒。"</p>
+      <p>小张愣了："那用什么？"</p>
+      <p><strong>"用动能定理。"</strong></p>
+      <p>这就是今天要讲清楚的那一关。它不是「动量、能量、牛顿定律哪个难」，而是——三把钥匙都在你手里，你拿错了。</p>
+
+      <h2>三把钥匙，各开哪把锁</h2>
+      <p>力学里，解一道题你手上通常有三套工具。我把它们的「适用场景」先摆成一张表：</p>
+      <table>
+        <tr><th>工具</th><th>它管什么</th><th>什么时候用它</th></tr>
+        <tr><td><strong>牛顿运动定律</strong></td><td>加速度、力、瞬时关系</td><td>要算加速度、某瞬间的力、运动过程的时候</td></tr>
+        <tr><td><strong>动量观点</strong></td><td>力在时间上的积累</td><td>涉及碰撞、打击、相互作用时间很短的时候</td></tr>
+        <tr><td><strong>能量观点</strong></td><td>力在空间上的积累</td><td>涉及位移、路程、高度、摩擦力做功的时候</td></tr>
+      </table>
+      <p>这张表是「地图」。但真正卡住学生的，不是记不住这张表，而是下面这件事。</p>
+
+      <h2>题眼：一句话判断法</h2>
+      <p>学生最容易混的是<strong>动量</strong>和<strong>能量</strong>。因为它们在很多题里"长得像"——都是"初状态 → 末状态"的守恒式。</p>
+      <p>记住这个<strong>判据</strong>就够了：</p>
+      <blockquote>看题里给的是「时间」，还是「位移」。<br>给时间、给碰撞、给打击 → 用动量<br>给位移、给高度、给摩擦力做功 → 用能量</blockquote>
+      <p>回到开头那道「木块冲斜面」：</p>
+      <ul>
+        <li>题目问「最大高度」，是<strong>空间</strong>量</li>
+        <li>斜面有<strong>摩擦</strong>，机械能不守恒，但<strong>动能定理</strong>能处理（摩擦力做功直接算进等式）</li>
+        <li>全程没有碰撞、没有"求某个极短时间内的力"</li>
+      </ul>
+      <p>所以——<strong>动能定理</strong>。小张用动量守恒，错在：① 有摩擦，系统机械能本就不守恒；② 单木块在斜面上，根本没有"守恒的动量系统"。</p>
+
+      <h2>三个高频错点</h2>
+      <ol>
+        <li><strong>"守恒"二字不能乱用。</strong>动量守恒的前提是「系统合外力为 0」；机械能守恒的前提是「只有重力/弹力做功」。有摩擦、有外力，就别急着写守恒式。</li>
+        <li><strong>动量是矢量，能量是标量。</strong>动量守恒要列正方向、带符号；能量是标量，直接加。混着用必错。</li>
+        <li><strong>「三大观点」不是三种并列的解法，是三种互补的角度。</strong>难题往往是「先用能量求速度，再用动量守恒求另一物体速度」的组合拳，不是选一个就完事。</li>
+      </ol>
+
+      <h2>一句话总结</h2>
+      <blockquote>给时间用动量，给位移用能量，要过程用牛顿。三把钥匙，先看题要的是哪把锁。</blockquote>
+
+      <hr class="hr">
+
+      <div class="next">
+        <h2>关于这篇文章</h2>
+        <p>这是「物理教学」板块的第一篇试水，素材来自「力学中三大观点的综合应用」复习讲义。如果你看完觉得这个角度有用，下一篇我用同样的方式讲下一个卡点；如果方向不对，直接告诉我。</p>
+      </div>
+    </article>
+
+    <footer>
+      <a href="index.html">浩然成长空间</a> · chr9.com
+    </footer>
+  </div>
+</body>
+</html>
