@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html data-page-node-id="iBLyNCn5DDnKbGqUGwQ8oe" lang="zh-CN">
-<head data-page-node-id="DDwog7iozDOPQOjEgBZV2a">
-<meta data-page-node-id="JCfpzJ1KoSYRC7R2TKrmID" charset="UTF-8">
-<meta data-page-node-id="yKX49Kxalo8wnWvcPXRtG0" content="width=device-width, initial-scale=1.0" name="viewport">
-<title data-page-node-id="wX1nd7pybRTLsF0A1AQ4EN" data-pnid-children="6W16K2xXsKs4t273XPdxai">个人画像 · 总测评</title>
-<style data-page-node-id="A8TeEBpKtgtL17NbQh61up" data-pnid-children="iwWBYSeZkkVU6y22eXRery">
+<html data-page-node-id="PLJ14uVfxgtBwVf9nYiOri" lang="zh-CN">
+<head data-page-node-id="lBjn8NAUMe5tBwFvsdeuKv">
+<meta data-page-node-id="MOTtAyFoDQa2tJloSMCaIe" charset="UTF-8">
+<meta data-page-node-id="J7aX3ewsUUwOi7zkMZeyeu" content="width=device-width, initial-scale=1.0" name="viewport">
+<title data-page-node-id="4J6fHcwTcZ4jxIX3ggukXo" data-pnid-children="PBRLYM59jIK4ol8dzE3Bru">个人画像 · 总测评</title>
+<style data-page-node-id="wsITT2BRRfxmomBDZ1GTKL" data-pnid-children="TYp8ZmAKBPe7XSCFc7xrp9">
   :root {
     --bg: #f7f7f5; --card: #fff; --text: #2c2c2a; --muted: #888780;
     --border: #e5e4df; --accent: #185FA5; --good: #1D9E75; --bad: #E24B4A; --amber: #BA7517;
@@ -77,38 +77,20 @@
   table.dt td.dnum { text-align: center; width: 56px; white-space: nowrap; font-weight: 500; }
   tr.dt-mod td { background: #E6F1FB; color: var(--accent); font-weight: 500; }
   tr.dt-dim td { background: #faf9f6; font-weight: 500; }
-  .modal-mask { position: fixed; inset: 0; background: rgba(0,0,0,0.45); display: flex; align-items: center; justify-content: center; z-index: 100; padding: 16px; }
-  .modal-box { background: #fff; border-radius: 12px; padding: 22px; width: 340px; max-width: 92vw; }
   .hidden { display: none; }
 </style>
 </head>
-<body data-page-node-id="z6AFpbCGJMcrx2eZam1aSA">
-<div data-page-node-id="D3yZ3826gNlYPlmpHtyzf4" class="wrap">
-  <div data-page-node-id="v9lZ6aYStnsHKnERSbnO4O" id="app"></div>
+<body data-page-node-id="PAe0ypPv1Fm4VggM4Q9Sni">
+<div data-page-node-id="Hfr88MvzSh2X3GdipR6zI4" class="wrap">
+  <div data-page-node-id="a1vT6RBbVkM2zwyK9px8qf" id="app"></div>
 </div>
-<div data-page-node-id="6SBvnjZu3vBMphP92YpprJ" class="hidden" id="loginModal"></div>
 
-<script data-page-node-id="0jQH1GtPQlqQIXEjyO8oyw" src="https://cdn.jsdelivr.net/npm/@tencent-ai/workbuddy-cloud-sdk@dev/lib/index.global.js"></script>
-<script data-page-node-id="htlxQN95bQ9xxNCMkY73O4" data-pnid-children="DkMzoLkucn4NEcJ5V6qwYb">
+<script data-page-node-id="g98RhVaDUkSFsNT4vUWVg3" data-pnid-children="RsAP4c33QEDOR15tQyCpNy">
 /* ============================================================
    全局状态
 ============================================================ */
-// 云服务初始化（SDK 由上方 CDN script 加载）
-let cloud = null, cloudOk = false, cloudModels = [];
-try {
-  cloud = WorkBuddyCloud.createWorkBuddyCloud({
-    endpoint: 'https://profile-eval.app.workbuddy.host',
-    oauthRelayBaseUrl: 'https://www.workbuddy.cn/v2/as/genie-baas/oauth',
-    publishableKey: 'wbpk_rTuahBoAHljiRVNyAC0PzN_L3gJpl7Om5X15ww33qKh5RBsVMXuoLvb'
-  });
-} catch (e) { console.error('云服务初始化失败：', e); }
-
 let view = 'home';           // home | var | base | env | rand | result
 let R = { change: null, baseline: null, env: null, random: null };  // 各模块结果摘要
-let currentUser = null;      // 当前登录用户
-let pendingOtp = null;       // { phone, verificationId, isExistingUser }
-let historyRecords = [];     // 历史记录缓存
-let historyNote = '';        // 历史查看提示
 
 function render() {
   const app = document.getElementById('app');
@@ -122,7 +104,6 @@ function render() {
   else if (view === 'base-result') renderBaseResult(app);
   else if (view === 'env-result') renderEnvResult(app);
   else if (view === 'rand-result') renderRandResult(app);
-  else if (view === 'history') renderHistory(app);
 }
 
 /* ============================================================
@@ -146,10 +127,7 @@ function renderHome(app) {
     <div class="card">
       <h1>个人画像 · 总测评</h1>
       <p class="sub" style="margin:8px 0 4px;">四个模块：变化率（你怎么走）、现状基线（你在哪）、环境场（外部给什么）、随机项（扛不扛得住波动）。</p>
-      <p class="sub" style="margin-bottom:8px;">可自选顺序，做完的会自动保留，最后汇总成一份个人画像总报告。</p>
-      <p class="sub">云服务：<span id="cloudStatus" style="${cloudOk ? 'color:var(--good)' : ''}">${cloudOk ? '已连接' : (cloud ? '检测中…' : 'SDK 未加载')}</span></p>
-      <div style="margin-top:12px; display:flex; align-items:center; gap:10px; flex-wrap:wrap;">${renderAuthBar()}</div>
-      ${currentUser ? `<div style="margin-top:8px;"><button class="btn" onclick="view='history';render()">我的历史报告</button></div>` : ''}
+      <p class="sub" style="margin-bottom:18px;">可自选顺序，做完的会自动保留，最后汇总成一份个人画像总报告。</p>
     </div>
     <div class="card">
       ${m('var', '变化率', '行为习惯 · 动机方向 · 抗压恢复 · 历史轨迹 · 成长速度', !!R.change, R.change ? '综合 ' + R.change.total + ' / 100' : '')}
@@ -168,7 +146,7 @@ function renderHome(app) {
 let CUR = { data: null, answers: {}, step: 0 };  // 当前模块的临时状态
 
 function go(id) { view = id; if (id === 'home' || id === 'result') { render(); return; } initModule(id); }
-function goResult(id) { historyNote = ''; const map = { var: 'var-result', base: 'base-result', env: 'env-result', rand: 'rand-result' }; view = map[id] || 'home'; render(); }
+function goResult(id) { const map = { var: 'var-result', base: 'base-result', env: 'env-result', rand: 'rand-result' }; view = map[id] || 'home'; render(); }
 
 /* ============================================================
    模块 1：变化率
@@ -374,7 +352,6 @@ function finishChange(skipped) {
   const labels = {habit:'行为习惯',motive:'动机方向',resilience:'抗压恢复',trajectory:'历史轨迹',speed:'成长速度'};
   const weakest = labels[Object.keys(labels).sort((a,b) => scores[a]-scores[b])[0]];
   R.change = { total, scores, weakest, raw };
-  saveResult('change', '综合 ' + total + '/100 · 最弱' + weakest, R.change);
   CUR.answers = {}; view = 'home'; render();
 }
 
@@ -440,7 +417,6 @@ function finishBaseline() {
     bmi, sleep
   };
   R.baseline = { scores, raven: CUR.ravenCorrect + '/' + RAVEN.length, digit: (CUR.df||0) + (CUR.db||0), bmi, raw };
-  saveResult('baseline', '大五 + 认知 + 健康', R.baseline);
   CUR.answers = {}; view = 'home'; render();
 }
 
@@ -478,7 +454,6 @@ function nextEnv() {
       if (sc >= 55) tails.push(d.title); else if (sc <= 45) heads.push(d.title);
     });
     R.env = { summary: tails.length + ' 顺 · ' + heads.length + ' 逆', raw };
-    saveResult('env', R.env.summary, R.env);
     CUR.answers = {}; view = 'home'; render();
   }
 }
@@ -516,7 +491,6 @@ function nextRand() {
     });
     const avg = Math.round((scores.redundancy + scores.option + scores.barbell) / 3);
     R.random = { scores, level: avg >= 70 ? '反脆弱' : avg >= 40 ? '强韧' : '脆弱', avg, raw };
-    saveResult('random', '等级：' + R.random.level, R.random);
     CUR.answers = {}; view = 'home'; render();
   }
 }
@@ -581,14 +555,13 @@ function renderResult(app) {
     </div>
   </div>
   <div class="card">
-    <h2>AI 深度解读</h2>
-    <p class="sub" style="margin-bottom:10px;">基于你的数据表，生成「情况说明 / 行动建议 / 人生趋势（条件式区间）」。由云端大模型生成，无需自己填 key。</p>
-    <div class="field"><label>选择模型</label><select id="aiModel">${renderModelOptions()}</select></div>
+    <h2>AI 深度解读（可选）</h2>
+    <p class="sub" style="margin-bottom:10px;">把数据表喂给 DeepSeek，生成「情况说明 / 行动建议 / 人生趋势（条件式区间）」。key 只存你本地浏览器，不上传服务器。</p>
+    <div class="field"><label>DeepSeek API Key</label><input id="aiKey" type="password" placeholder="sk-…" value="${storeGet('ai_key')}"></div>
     <button class="btn primary" style="width:100%;" onclick="callAI()">生成 AI 解读</button>
     <div id="aiOut" style="margin-top:14px; text-align:left; line-height:1.7;"></div>
   </div>
   <button class="btn" style="width:100%;" onclick="view='home';render()">返回总入口</button>`;
-  ensureModels();
 }
 
 /* ============================================================
@@ -608,7 +581,6 @@ function renderVarResult(app) {
     { key: 'speed', label: '成长速度', hint: '学得有多快' }
   ];
   app.innerHTML = `<div class="card">${topbar('变化率 · 结果', "view='home';render()")}
-    ${historyNote ? `<p class="sub" style="color:var(--amber); margin-bottom:8px;">${historyNote}</p>` : ''}
     <h2>综合 ${r.total} / 100</h2><p class="sub">最弱维度：${r.weakest}（这是你最该先补的一块）</p></div>
     <div class="card"><h2>五维得分</h2>
       ${dims.map(d => { const sc = r.scores[d.key]; return `<div class="dim-row"><div style="flex:1;"><div class="dname">${d.label} <span class="sub">${d.hint}</span></div><div class="bar"><div class="bar-fill" style="width:${sc}%; background:${barColor(sc)};"></div></div></div><div class="dval" style="color:${barColor(sc)};">${sc}</div></div>`; }).join('')}
@@ -624,7 +596,6 @@ function renderBaseResult(app) {
   const b = R.baseline;
   const hint = { C: '自律可靠 vs 懒散拖延', N: '冷静抗压 vs 焦虑波动', O: '好奇开放 vs 循规蹈矩', A: '信任合作 vs 挑剔争辩', E: '外向社交 vs 内向安静' };
   app.innerHTML = `<div class="card">${topbar('现状基线 · 结果', "view='home';render()")}
-    ${historyNote ? `<p class="sub" style="color:var(--amber); margin-bottom:8px;">${historyNote}</p>` : ''}
     <h2>大五人格</h2>
     ${DIMS.map(d => { const sc = b.scores[d.key]; return `<div class="dim-row"><div style="flex:1;"><div class="dname">${d.label} <span class="sub">${hint[d.key]}</span></div><div class="bar"><div class="bar-fill" style="width:${sc}%; background:${barColor(sc)};"></div></div></div><div class="dval" style="color:${barColor(sc)};">${sc}</div></div>`; }).join('')}
     <p class="sub" style="margin-top:8px;">大五无总分，只有五维画像，也无好坏之分。</p>
@@ -642,7 +613,6 @@ function renderBaseResult(app) {
 function renderEnvResult(app) {
   if (!R.env) { view = 'home'; render(); return; }
   app.innerHTML = `<div class="card">${topbar('环境场 · 结果', "view='home';render()")}
-    ${historyNote ? `<p class="sub" style="color:var(--amber); margin-bottom:8px;">${historyNote}</p>` : ''}
     <h2>${R.env.summary}</h2><p class="sub">顺风（绿）逆风（红），无总分，看能不能对冲。</p></div>
     <div class="card"><h2>五维风向</h2>
       ${ENV_DIMS.map(d => { const sc = R.env.raw[d.id].score; const dir = sc >= 55 ? '顺风' : sc <= 45 ? '逆风' : '中性'; const col = sc >= 55 ? 'var(--good)' : sc <= 45 ? 'var(--bad)' : 'var(--muted)'; const half = Math.abs(sc - 50) * 2; const bar = sc >= 50
@@ -662,7 +632,6 @@ function renderRandResult(app) {
     { key: 'barbell', label: '杠铃结构', hint: '稳中带赌' }
   ];
   app.innerHTML = `<div class="card">${topbar('随机项 · 结果', "view='home';render()")}
-    ${historyNote ? `<p class="sub" style="color:var(--amber); margin-bottom:8px;">${historyNote}</p>` : ''}
     <h2>反脆弱等级：${R.random.level}</h2><p class="sub">综合 ${R.random.avg} / 100（这不是运气分，是"对波动的准备"）</p></div>
     <div class="card"><h2>三信号</h2>
       ${dims.map(d => { const sc = R.random.scores[d.key]; return `<div class="dim-row"><div style="flex:1;"><div class="dname">${d.label} <span class="sub">${d.hint}</span></div><div class="bar"><div class="bar-fill" style="width:${sc}%; background:${barColor(sc)};"></div></div></div><div class="dval" style="color:${barColor(sc)};">${sc}</div></div>`; }).join('')}
@@ -724,6 +693,8 @@ function renderDataTableAsTable() {
   return html;
 }
 
+function storeGet(k) { try { return localStorage.getItem(k) || ''; } catch(e) { return ''; } }
+function storeSet(k, v) { try { localStorage.setItem(k, v); } catch(e) {} }
 function escapeHtml(s) { return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
 
 function mdToHtml(md) {
@@ -855,212 +826,31 @@ const AI_SYSTEM_PROMPT = `你是一位严谨、克制的人生画像解读助手
 ### 三、人生趋势
 基于数据给 1–2 个「条件式区间」判断（短期 1 年 / 中期 3–5 年），明确标注是推演而非预言。`;
 
-function renderModelOptions() {
-  const available = (cloudModels || []).filter(m => m.disabled !== true);
-  if (available.length === 0) return '<option value="">自动选择</option>';
-  return available.map(m => `<option value="${m.id}">${m.name || m.id}</option>`).join('');
-}
-async function ensureModels() {
-  if (cloudModels && cloudModels.length) return;
-  try { cloudModels = await cloud.llm.models.list(); } catch (e) { return; }
-  const sel = document.getElementById('aiModel');
-  if (sel) {
-    const available = (cloudModels || []).filter(m => m.disabled !== true);
-    if (available.length) sel.innerHTML = available.map(m => `<option value="${m.id}">${m.name || m.id}</option>`).join('');
-  }
-}
-
-async function callAI() {
+function callAI() {
+  const keyEl = document.getElementById('aiKey');
+  const key = (keyEl ? keyEl.value : '').trim();
   const out = document.getElementById('aiOut');
-  if (!cloud) { out.innerHTML = '<span style="color:var(--bad)">云服务未连接，无法生成解读。</span>'; return; }
-  if (!currentUser) { out.innerHTML = '<span style="color:var(--amber)">请先登录，再使用 AI 深度解读。</span>'; return; }
+  if (!key) { out.innerHTML = '<span style="color:var(--bad)">请先填写 DeepSeek API Key（sk- 开头）。</span>'; if (keyEl) keyEl.focus(); return; }
+  storeSet('ai_key', key);
   out.innerHTML = '正在生成 AI 解读，请稍候（约 10–30 秒）…';
-  try {
-    const sel = document.getElementById('aiModel');
-    const pick = (list) => { const m = (list || []).find(x => x.disabled !== true); return m ? m.id : ''; };
-    let modelId = sel && sel.value ? sel.value : pick(cloudModels);
-    if (!modelId) { cloudModels = await cloud.llm.models.list(); modelId = pick(cloudModels); }
-    if (!modelId) { out.innerHTML = '<span style="color:var(--bad)">当前没有可用的模型，请稍后再试。</span>'; return; }
-    const userContent = '以下是我的个人画像测评原始数据（JSON）：\n' + JSON.stringify(dataTableJSON(), null, 2) + '\n\n请按规则输出三段解读。';
-    let answer = '';
-    for await (const chunk of cloud.llm.chat.completions.create({
-      model: modelId,
-      messages: [
-        { role: 'system', content: AI_SYSTEM_PROMPT },
-        { role: 'user', content: userContent }
-      ],
-      stream: true,
-      temperature: 0.5
-    })) {
-      const delta = chunk.choices && chunk.choices[0] && chunk.choices[0].delta;
-      if (delta && delta.content) answer += delta.content;
-    }
-    out.innerHTML = answer ? mdToHtml(answer) : '<span style="color:var(--bad)">模型没有返回内容。</span>';
-  } catch (e) {
-    out.innerHTML = '<span style="color:var(--bad)">生成失败：' + escapeHtml(e.message || String(e)) + '</span>';
-  }
-}
-
-/* ============================================================
-   云服务连通性检查
-============================================================ */
-async function verifyCloud() {
-  const el = document.getElementById('cloudStatus');
-  const set = (t, c) => { if (el) { el.textContent = t; el.style.color = c || ''; } };
-  if (!cloud) { set('SDK 未加载', 'var(--bad)'); return; }
-  set('检测中…', '');
-  try {
-    cloudModels = await cloud.llm.models.list();
-    cloudOk = true;
-    set('已连接', 'var(--good)');
-  } catch (e) {
-    cloudOk = false;
-    console.error('云服务连通失败：', e);
-    set('连接失败', 'var(--bad)');
-  }
-}
-
-/* ============================================================
-   登录（手机号验证码）
-============================================================ */
-async function initAuth() {
-  if (!cloud) return;
-  try {
-    const { data: session, error } = await cloud.auth.getSession();
-    if (!error && session && session.user) { currentUser = session.user; render(); }
-  } catch (e) { console.error('恢复登录状态失败：', e); }
-}
-function renderAuthBar() {
-  if (!currentUser) {
-    return `<button class="btn" onclick="openLogin()">登录</button> <span class="sub">登录后可保存测评结果、解锁 AI 深度解读</span>`;
-  }
-  const name = currentUser.name || currentUser.phone || currentUser.email || '已登录';
-  return `<span class="tag done">已登录</span> <b>${name}</b> <button class="btn ghost" onclick="doSignOut()">登出</button>`;
-}
-function openLogin() {
-  const el = document.getElementById('loginModal');
-  el.className = 'modal-mask';
-  el.innerHTML = `<div class="modal-box">
-    <h2 style="margin-bottom:6px;">登录</h2>
-    <p class="sub" style="margin-bottom:14px;">登录后可保存测评结果、解锁 AI 深度解读。</p>
-    <div class="field"><label>手机号</label><input id="lgPhone" type="tel" inputmode="numeric" placeholder="11 位手机号"></div>
-    <div class="field"><label>验证码</label><div style="display:flex; gap:8px;"><input id="lgCode" type="text" inputmode="numeric" placeholder="6 位验证码" style="flex:1;"><button class="btn" id="lgSend" onclick="sendCode()">获取验证码</button></div></div>
-    <div id="lgMsg" class="sub" style="margin-bottom:10px; min-height:18px;"></div>
-    <button class="btn primary" style="width:100%;" onclick="doLogin()">登录 / 注册</button>
-    <button class="btn ghost" style="width:100%;" onclick="closeLogin()">取消</button>
-  </div>`;
-}
-function closeLogin() {
-  const el = document.getElementById('loginModal');
-  el.className = 'hidden'; el.innerHTML = '';
-}
-async function sendCode() {
-  const phone = document.getElementById('lgPhone').value.trim();
-  const msg = document.getElementById('lgMsg');
-  if (!/^1\d{10}$/.test(phone)) { msg.innerHTML = '<span style="color:var(--bad)">请输入正确的 11 位手机号</span>'; return; }
-  const btn = document.getElementById('lgSend');
-  btn.disabled = true; msg.textContent = '正在发送验证码…';
-  try {
-    const sent = await cloud.auth.sendOtp({ phone });
-    if (sent.error) { msg.innerHTML = '<span style="color:var(--bad)">' + sent.error.message + '</span>'; return; }
-    pendingOtp = { phone, verificationId: sent.data.verificationId, isExistingUser: sent.data.isExistingUser };
-    msg.innerHTML = '<span style="color:var(--good)">验证码已发送，请查收短信</span>';
-  } catch (e) {
-    msg.innerHTML = '<span style="color:var(--bad)">发送失败：' + (e.message || e) + '</span>';
-  } finally {
-    btn.disabled = false;
-  }
-}
-async function doLogin() {
-  const phone = document.getElementById('lgPhone').value.trim();
-  const code = document.getElementById('lgCode').value.trim();
-  const msg = document.getElementById('lgMsg');
-  if (!pendingOtp || pendingOtp.phone !== phone) { msg.innerHTML = '<span style="color:var(--bad)">请先获取验证码</span>'; return; }
-  if (!code) { msg.innerHTML = '<span style="color:var(--bad)">请输入验证码</span>'; return; }
-  msg.textContent = '登录中…';
-  try {
-    const completed = await cloud.auth.verifyOtp({ phone: pendingOtp.phone, verificationId: pendingOtp.verificationId, isExistingUser: pendingOtp.isExistingUser, token: code });
-    if (completed.error) { msg.innerHTML = '<span style="color:var(--bad)">' + completed.error.message + '</span>'; return; }
-    pendingOtp = null;
-    currentUser = completed.data.user;
-    closeLogin();
-    render();
-  } catch (e) {
-    msg.innerHTML = '<span style="color:var(--bad)">登录失败：' + (e.message || e) + '</span>';
-  }
-}
-async function doSignOut() {
-  try { await cloud.auth.signOut(); } catch (e) {}
-  currentUser = null;
-  render();
-}
-
-/* ============================================================
-   数据持久化（测评结果存云端）
-============================================================ */
-const MODULE_LABEL = { change: '变化率', baseline: '现状基线', env: '环境场', random: '随机项' };
-async function saveResult(module, summary, result) {
-  if (!cloud || !currentUser) return;   // 未登录不存
-  try {
-    const { error } = await cloud.database
-      .from('assessment_records')
-      .insert({ module, summary, result, owner_name: currentUser.name || null });
-    if (error) console.error('保存结果失败：', error);
-  } catch (e) { console.error('保存结果异常：', e); }
-}
-async function renderHistory(app) {
-  app.innerHTML = `<div class="card">${topbar('我的历史报告', "view='home';render()")}
-    <h2>我的测评历史</h2><p class="sub">按时间倒序，点「查看」回看某次的详细结果。</p></div>
-    <div id="historyList" class="card"><p class="sub">加载中…</p></div>`;
-  if (!currentUser) { document.getElementById('historyList').innerHTML = '<p class="sub">请先登录，再查看你的历史报告。</p>'; return; }
-  const { data, error } = await cloud.database
-    .from('assessment_records')
-    .select('id, module, summary, result, created_at')
-    .order('created_at', { ascending: false })
-    .limit(50);
-  if (error) { document.getElementById('historyList').innerHTML = '<p class="sub" style="color:var(--bad)">加载失败：' + error.message + '</p>'; return; }
-  historyRecords = data || [];
-  const listEl = document.getElementById('historyList');
-  if (!historyRecords.length) { listEl.innerHTML = '<p class="sub">还没有记录，先去做一个模块，结果会自动存下来。</p>'; return; }
-  listEl.innerHTML = historyRecords.map(r => {
-    const t = new Date(r.created_at).toLocaleString('zh-CN', { hour12: false });
-    return `<div class="module"><div>
-      <div class="m-title">${MODULE_LABEL[r.module] || r.module}</div>
-      <div class="m-sum">${r.summary || ''}</div>
-      <div class="m-desc">${t}</div>
-    </div>
-    <div style="display:flex; gap:6px;">
-      <button class="btn primary" onclick="viewHistory(${r.id})">查看</button>
-      <button class="btn ghost" onclick="deleteHistory(${r.id})">删除</button>
-    </div></div>`;
-  }).join('');
-}
-function viewHistory(id) {
-  const rec = historyRecords.find(r => r.id === id);
-  if (!rec) return;
-  if (rec.module === 'change') R.change = rec.result;
-  else if (rec.module === 'baseline') R.baseline = rec.result;
-  else if (rec.module === 'env') R.env = rec.result;
-  else if (rec.module === 'random') R.random = rec.result;
-  historyNote = '历史记录 · ' + new Date(rec.created_at).toLocaleString('zh-CN', { hour12: false });
-  const map = { change: 'var-result', baseline: 'base-result', env: 'env-result', random: 'rand-result' };
-  view = map[rec.module] || 'home';
-  render();
-}
-async function deleteHistory(id) {
-  if (!confirm('确定删除这条记录吗？删除后不可恢复。')) return;
-  const { error } = await cloud.database.from('assessment_records').delete().eq('id', id);
-  if (error) { alert('删除失败：' + error.message); return; }
-  historyRecords = historyRecords.filter(r => r.id !== id);
-  renderHistory(document.getElementById('app'));
+  const userContent = '以下是我的个人画像测评原始数据（JSON）：\n' + JSON.stringify(dataTableJSON(), null, 2) + '\n\n请按规则输出三段解读。';
+  fetch('https://api.deepseek.com/chat/completions', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + key },
+    body: JSON.stringify({ model: 'deepseek-chat', messages: [
+      { role: 'system', content: AI_SYSTEM_PROMPT },
+      { role: 'user', content: userContent }
+    ], temperature: 0.5, max_tokens: 2000 })
+  })
+  .then(r => { if (!r.ok) return r.json().then(e => { throw new Error(e.error && e.error.message ? e.error.message : ('HTTP ' + r.status)); }); return r.json(); })
+  .then(d => { const txt = d.choices && d.choices[0] && d.choices[0].message ? d.choices[0].message.content : ''; out.innerHTML = mdToHtml(txt); })
+  .catch(e => { out.innerHTML = '<span style="color:var(--bad)">生成失败：' + escapeHtml(e.message) + '。请检查 key 是否正确、是否有余额、网络是否可达 api.deepseek.com。</span>'; });
 }
 
 /* ============================================================
    启动
 ============================================================ */
 render();
-verifyCloud();
-initAuth();
 </script>
 </body>
 </html>

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>应用工具 · 浩然成长空间</title>
+<style>
+  :root {
+    --bg: #f7f7f5;
+    --card: #ffffff;
+    --text: #1a1a1a;
+    --muted: #6b6b66;
+    --line: #e5e4df;
+    --accent: #0f6e56;
+    --accent-soft: #e1f5ee;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: -apple-system, "PingFang SC", "Microsoft YaHei", "Segoe UI", sans-serif;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+  .wrap { max-width: 760px; margin: 0 auto; padding: 0 24px; }
+  header { padding: 48px 0 28px; }
+  .back { color: var(--accent); text-decoration: none; font-size: 14px; }
+  h1 { font-size: 26px; font-weight: 600; margin-top: 12px; }
+  .sub { color: var(--muted); font-size: 14px; margin-top: 6px; }
+
+  .tools { padding-bottom: 48px; }
+  .tool-card {
+    display: flex; align-items: center; gap: 16px;
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    padding: 20px;
+    text-decoration: none;
+    color: inherit;
+    margin-bottom: 14px;
+    transition: transform .12s ease, border-color .12s ease;
+  }
+  .tool-card:hover { transform: translateY(-2px); border-color: var(--accent); }
+  .tool-icon {
+    width: 48px; height: 48px; flex-shrink: 0;
+    border-radius: 10px;
+    background: var(--accent-soft);
+    color: var(--accent);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 20px; font-weight: 500;
+  }
+  .tool-info { flex: 1; }
+  .tool-info h2 { font-size: 16px; font-weight: 600; margin-bottom: 4px; }
+  .tool-info p { font-size: 13px; color: var(--muted); }
+  .arrow { font-size: 22px; color: var(--muted); flex-shrink: 0; }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <a class="back" href="index.html">← 返回首页</a>
+      <h1>应用工具</h1>
+      <p class="sub">自建的小工具，按需使用，持续添加</p>
+    </header>
+
+    <div class="tools">
+      <a class="tool-card" href="profile.html">
+        <div class="tool-icon">测</div>
+        <div class="tool-info">
+          <h2>个人画像测评</h2>
+          <p>人生杠杆体检：变化率 · 现状基线 · 环境场 · 随机项，做完生成个人画像总报告</p>
+        </div>
+        <div class="arrow">›</div>
+      </a>
+    </div>
+  </div>
+</body>
+</html>
