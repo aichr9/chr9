@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>浩然成长空间 · chr9.com</title>
+<style>
+  :root {
+    --bg: #f7f7f5;
+    --card: #ffffff;
+    --text: #1a1a1a;
+    --muted: #6b6b66;
+    --line: #e5e4df;
+    --accent: #0f6e56;
+    --accent-soft: #e1f5ee;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: -apple-system, "PingFang SC", "Microsoft YaHei", "Segoe UI", sans-serif;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+  .wrap { max-width: 960px; margin: 0 auto; padding: 0 24px; }
+
+  header {
+    text-align: center;
+    padding: 72px 0 48px;
+  }
+  .avatar {
+    width: 72px; height: 72px; margin: 0 auto 20px;
+    border-radius: 50%;
+    background: var(--accent);
+    color: #fff;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 30px; font-weight: 500;
+  }
+  h1 { font-size: 34px; font-weight: 600; letter-spacing: 0.5px; }
+  .domain { font-size: 15px; color: var(--accent); font-weight: 500; margin-top: 4px; }
+  .intro { color: var(--muted); font-size: 15px; margin-top: 12px; }
+
+  .sections {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+    padding: 8px 0 48px;
+  }
+  .card {
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    padding: 22px 20px;
+    text-decoration: none;
+    color: inherit;
+    transition: transform .12s ease, border-color .12s ease;
+  }
+  .card:hover { transform: translateY(-2px); border-color: var(--accent); }
+  .card .tag {
+    display: inline-block;
+    font-size: 12px;
+    padding: 2px 8px;
+    border-radius: 999px;
+    background: var(--accent-soft);
+    color: var(--accent);
+    margin-bottom: 12px;
+  }
+  .card .tag.later { background: #f1efe8; color: #6b6b66; }
+  .card h2 { font-size: 17px; font-weight: 600; margin-bottom: 6px; }
+  .card p { font-size: 13px; color: var(--muted); }
+
+  footer {
+    text-align: center;
+    padding: 32px 0 48px;
+    color: var(--muted);
+    font-size: 13px;
+    border-top: 1px solid var(--line);
+  }
+
+  @media (max-width: 720px) {
+    .sections { grid-template-columns: repeat(2, 1fr); }
+    header { padding: 48px 0 32px; }
+  }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <div class="avatar">浩</div>
+      <h1>浩然成长空间</h1>
+      <div class="domain">chr9.com</div>
+      <p class="intro">成长从这里开始，永不停止</p>
+    </header>
+
+    <div class="sections">
+      <a class="card" href="#">
+        <span class="tag">导航</span>
+        <h2>网站导航</h2>
+        <p>常用网站与工具入口，集中收藏</p>
+      </a>
+      <a class="card" href="#">
+        <span class="tag">资料</span>
+        <h2>资料库</h2>
+        <p>物理科普与学习资料的沉淀</p>
+      </a>
+      <a class="card" href="#">
+        <span class="tag later">应用</span>
+        <h2>应用工具</h2>
+        <p>自建小工具，以后按需添加</p>
+      </a>
+      <a class="card" href="#">
+        <span class="tag">留言</span>
+        <h2>留言板</h2>
+        <p>来聊聊，留下你的想法</p>
+      </a>
+    </div>
+
+    <footer>
+      <p>© 2026 chr9.com · 用心沉淀，慢慢生长</p>
+    </footer>
+  </div>
+</body>
+</html>
