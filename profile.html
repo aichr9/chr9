@@ -1,0 +1,1066 @@
+<!DOCTYPE html>
+<html data-page-node-id="iBLyNCn5DDnKbGqUGwQ8oe" lang="zh-CN">
+<head data-page-node-id="DDwog7iozDOPQOjEgBZV2a">
+<meta data-page-node-id="JCfpzJ1KoSYRC7R2TKrmID" charset="UTF-8">
+<meta data-page-node-id="yKX49Kxalo8wnWvcPXRtG0" content="width=device-width, initial-scale=1.0" name="viewport">
+<title data-page-node-id="wX1nd7pybRTLsF0A1AQ4EN" data-pnid-children="6W16K2xXsKs4t273XPdxai">个人画像 · 总测评</title>
+<style data-page-node-id="A8TeEBpKtgtL17NbQh61up" data-pnid-children="iwWBYSeZkkVU6y22eXRery">
+  :root {
+    --bg: #f7f7f5; --card: #fff; --text: #2c2c2a; --muted: #888780;
+    --border: #e5e4df; --accent: #185FA5; --good: #1D9E75; --bad: #E24B4A; --amber: #BA7517;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: -apple-system, "PingFang SC", "Microsoft YaHei", "Segoe UI", sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; padding: 24px 16px 60px; }
+  .wrap { max-width: 680px; margin: 0 auto; }
+  .card { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 22px; margin-bottom: 16px; }
+  h1 { font-size: 21px; font-weight: 600; }
+  h2 { font-size: 17px; font-weight: 600; margin-bottom: 6px; }
+  .sub { color: var(--muted); font-size: 13px; margin-top: 4px; }
+  .btn { display: inline-block; border: 1px solid var(--border); background: #fff; color: var(--text); padding: 10px 18px; border-radius: 9px; cursor: pointer; font-size: 14px; transition: all .15s; }
+  .btn:hover { border-color: var(--accent); color: var(--accent); }
+  .btn.primary { background: var(--accent); border-color: var(--accent); color: #fff; }
+  .btn.primary:hover { opacity: .9; }
+  .btn.ghost { background: transparent; border-color: transparent; color: var(--muted); }
+  .btn.ghost:hover { color: var(--accent); }
+  .progress { height: 6px; background: #efefe9; border-radius: 4px; overflow: hidden; margin-bottom: 18px; }
+  .progress-fill { height: 100%; background: var(--accent); transition: width .3s; border-radius: 4px; }
+  .topbar { display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px; }
+
+  .module { display: flex; justify-content: space-between; align-items: center; padding: 16px; border: 1px solid var(--border); border-radius: 12px; margin-bottom: 12px; }
+  .module.done { border-color: #c0dd97; background: #f7fbf3; }
+  .module .m-title { font-size: 15px; font-weight: 600; }
+  .module .m-desc { font-size: 12px; color: var(--muted); margin-top: 3px; }
+  .module .m-sum { font-size: 12px; margin-top: 5px; }
+  .tag { font-size: 11px; padding: 2px 8px; border-radius: 20px; background: #E6F1FB; color: var(--accent); }
+  .tag.done { background: #E1F5EE; color: #0F6E56; }
+
+  .q { margin-bottom: 18px; }
+  .q-title { font-size: 14px; font-weight: 500; margin-bottom: 10px; }
+  .q-opts { display: flex; flex-direction: column; gap: 8px; }
+  .q-opt { border: 1px solid var(--border); border-radius: 9px; padding: 10px 13px; cursor: pointer; font-size: 14px; transition: all .15s; background: #fff; }
+  .q-opt:hover { border-color: var(--accent); }
+  .q-opt.sel { border-color: var(--accent); background: #E6F1FB; }
+  .q-miss { border: 2px solid var(--bad); border-radius: 9px; padding: 6px; animation: missBlink 1.4s ease 1; }
+  @keyframes missBlink { 0%,100% { background: transparent; } 25%,75% { background: #FCEBEB; } }
+  .likert { display: flex; justify-content: space-between; gap: 6px; }
+  .likert .lk { flex: 1; text-align: center; border: 1px solid var(--border); border-radius: 8px; padding: 8px 4px; cursor: pointer; font-size: 12px; transition: all .15s; }
+  .likert .lk.sel { border-color: var(--accent); background: #E6F1FB; }
+  .ref { font-size: 12px; color: var(--muted); background: #faf9f6; border-left: 3px solid var(--border); padding: 6px 10px; border-radius: 0 6px 6px 0; margin-bottom: 10px; }
+  .opt-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; }
+  .opt-grid .q-opt { text-align: center; font-size: 18px; padding: 14px 0; }
+  .raven-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; max-width: 260px; margin: 12px auto; }
+  .raven-cell { border: 1px solid var(--border); border-radius: 6px; height: 60px; display: flex; align-items: center; justify-content: center; font-size: 18px; background: #faf9f6; }
+  .raven-cell.missing { border-style: dashed; color: var(--muted); }
+  .digit-display { font-size: 40px; text-align: center; letter-spacing: 12px; margin: 20px 0; font-weight: 600; }
+  .digit-input { width: 100%; padding: 12px; font-size: 22px; letter-spacing: 6px; text-align: center; border: 1px solid var(--border); border-radius: 9px; }
+  .symbol-big { font-size: 56px; text-align: center; margin: 18px 0; }
+  .map-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin: 14px 0; }
+  .map-cell { text-align: center; padding: 12px 4px; border: 1px solid var(--border); border-radius: 9px; }
+  .map-cell .s { font-size: 28px; display: block; }
+  .map-cell .n { font-size: 16px; color: var(--accent); font-weight: 600; }
+  .timer { font-size: 15px; font-weight: 600; color: var(--accent); text-align: center; margin-bottom: 10px; }
+  .timer.warn { color: var(--bad); }
+  .field { margin-bottom: 14px; }
+  .field label { display: block; font-size: 13px; color: var(--muted); margin-bottom: 5px; }
+  .field input, .field select { width: 100%; padding: 9px 12px; border: 1px solid var(--border); border-radius: 8px; font-size: 14px; }
+
+  .dim-row { display: flex; justify-content: space-between; align-items: center; padding: 9px 0; border-bottom: 1px solid #f0efea; }
+  .dim-row .dname { font-size: 14px; }
+  .dim-row .dval { font-size: 15px; font-weight: 600; }
+  .bar { height: 8px; background: #efefe9; border-radius: 5px; overflow: hidden; margin: 6px 0 2px; }
+  .bar-fill { height: 100%; border-radius: 5px; }
+  .diag { border-left: 3px solid var(--amber); background: #FAF9F6; padding: 10px 13px; border-radius: 0 8px 8px 0; margin: 8px 0; font-size: 13px; }
+  .verdict { font-size: 15px; line-height: 1.7; }
+  table.dt { width: 100%; border-collapse: collapse; font-size: 13px; margin-top: 10px; }
+  table.dt th, table.dt td { border: 1px solid var(--border); padding: 7px 9px; text-align: left; vertical-align: top; line-height: 1.5; }
+  table.dt thead th { background: #faf9f6; font-weight: 500; color: var(--muted); }
+  table.dt td.dnum { text-align: center; width: 56px; white-space: nowrap; font-weight: 500; }
+  tr.dt-mod td { background: #E6F1FB; color: var(--accent); font-weight: 500; }
+  tr.dt-dim td { background: #faf9f6; font-weight: 500; }
+  .modal-mask { position: fixed; inset: 0; background: rgba(0,0,0,0.45); display: flex; align-items: center; justify-content: center; z-index: 100; padding: 16px; }
+  .modal-box { background: #fff; border-radius: 12px; padding: 22px; width: 340px; max-width: 92vw; }
+  .hidden { display: none; }
+</style>
+</head>
+<body data-page-node-id="z6AFpbCGJMcrx2eZam1aSA">
+<div data-page-node-id="D3yZ3826gNlYPlmpHtyzf4" class="wrap">
+  <div data-page-node-id="v9lZ6aYStnsHKnERSbnO4O" id="app"></div>
+</div>
+<div data-page-node-id="6SBvnjZu3vBMphP92YpprJ" class="hidden" id="loginModal"></div>
+
+<script data-page-node-id="0jQH1GtPQlqQIXEjyO8oyw" src="https://cdn.jsdelivr.net/npm/@tencent-ai/workbuddy-cloud-sdk@dev/lib/index.global.js"></script>
+<script data-page-node-id="htlxQN95bQ9xxNCMkY73O4" data-pnid-children="DkMzoLkucn4NEcJ5V6qwYb">
+/* ============================================================
+   全局状态
+============================================================ */
+// 云服务初始化（SDK 由上方 CDN script 加载）
+let cloud = null, cloudOk = false, cloudModels = [];
+try {
+  cloud = WorkBuddyCloud.createWorkBuddyCloud({
+    endpoint: 'https://profile-eval.app.workbuddy.host',
+    oauthRelayBaseUrl: 'https://www.workbuddy.cn/v2/as/genie-baas/oauth',
+    publishableKey: 'wbpk_rTuahBoAHljiRVNyAC0PzN_L3gJpl7Om5X15ww33qKh5RBsVMXuoLvb'
+  });
+} catch (e) { console.error('云服务初始化失败：', e); }
+
+let view = 'home';           // home | var | base | env | rand | result
+let R = { change: null, baseline: null, env: null, random: null };  // 各模块结果摘要
+let currentUser = null;      // 当前登录用户
+let pendingOtp = null;       // { phone, verificationId, isExistingUser }
+let historyRecords = [];     // 历史记录缓存
+let historyNote = '';        // 历史查看提示
+
+function render() {
+  const app = document.getElementById('app');
+  if (view === 'home') renderHome(app);
+  else if (view === 'var') renderChange(app);
+  else if (view === 'base') renderBaseline(app);
+  else if (view === 'env') renderEnv(app);
+  else if (view === 'rand') renderRandom(app);
+  else if (view === 'result') renderResult(app);
+  else if (view === 'var-result') renderVarResult(app);
+  else if (view === 'base-result') renderBaseResult(app);
+  else if (view === 'env-result') renderEnvResult(app);
+  else if (view === 'rand-result') renderRandResult(app);
+  else if (view === 'history') renderHistory(app);
+}
+
+/* ============================================================
+   总入口
+============================================================ */
+function renderHome(app) {
+  const m = (id, title, desc, done, sum) => `
+    <div class="module ${done ? 'done' : ''}">
+      <div>
+        <div class="m-title">${title} <span class="tag ${done ? 'done' : ''}">${done ? '已完成' : '未开始'}</span></div>
+        <div class="m-desc">${desc}</div>
+        ${sum ? `<div class="m-sum">${sum}</div>` : ''}
+      </div>
+      <div style="display:flex; flex-direction:column; gap:6px; min-width:88px;">
+        ${done ? `<button class="btn primary" onclick="goResult('${id}')">查看结果</button>` : ''}
+        <button class="btn ${done ? '' : 'primary'}" onclick="go('${id}')">${done ? '重做' : '开始'}</button>
+      </div>
+    </div>`;
+  const doneAll = R.change && R.baseline && R.env && R.random;
+  app.innerHTML = `
+    <div class="card">
+      <h1>个人画像 · 总测评</h1>
+      <p class="sub" style="margin:8px 0 4px;">四个模块：变化率（你怎么走）、现状基线（你在哪）、环境场（外部给什么）、随机项（扛不扛得住波动）。</p>
+      <p class="sub" style="margin-bottom:8px;">可自选顺序，做完的会自动保留，最后汇总成一份个人画像总报告。</p>
+      <p class="sub">云服务：<span id="cloudStatus" style="${cloudOk ? 'color:var(--good)' : ''}">${cloudOk ? '已连接' : (cloud ? '检测中…' : 'SDK 未加载')}</span></p>
+      <div style="margin-top:12px; display:flex; align-items:center; gap:10px; flex-wrap:wrap;">${renderAuthBar()}</div>
+      ${currentUser ? `<div style="margin-top:8px;"><button class="btn" onclick="view='history';render()">我的历史报告</button></div>` : ''}
+    </div>
+    <div class="card">
+      ${m('var', '变化率', '行为习惯 · 动机方向 · 抗压恢复 · 历史轨迹 · 成长速度', !!R.change, R.change ? '综合 ' + R.change.total + ' / 100' : '')}
+      ${m('base', '现状基线', '大五人格 · 认知能力 · 健康精力', !!R.baseline, R.baseline ? '人格 + 认知 + 健康' : '')}
+      ${m('env', '环境场', '家庭 · 网络 · 行业 · 地域 · 制度（风场）', !!R.env, R.env ? R.env.summary : '')}
+      ${m('rand', '随机项', '反脆弱画像（冗余 · 选择 · 杠铃）', !!R.random, R.random ? '等级：' + R.random.level : '')}
+    </div>
+    <button class="btn primary" style="width:100%;" onclick="go('result')" ${doneAll ? '' : 'disabled'}>${doneAll ? '查看个人画像总报告' : '完成四个模块后解锁总报告'}</button>
+    ${doneAll ? '' : '<p class="sub" style="margin-top:8px;">已完成 ' + ['change','baseline','env','random'].filter(k => R[k]).length + ' / 4 个模块</p>'}
+  `;
+}
+
+/* ============================================================
+   通用：选择题渲染
+============================================================ */
+let CUR = { data: null, answers: {}, step: 0 };  // 当前模块的临时状态
+
+function go(id) { view = id; if (id === 'home' || id === 'result') { render(); return; } initModule(id); }
+function goResult(id) { historyNote = ''; const map = { var: 'var-result', base: 'base-result', env: 'env-result', rand: 'rand-result' }; view = map[id] || 'home'; render(); }
+
+/* ============================================================
+   模块 1：变化率
+============================================================ */
+const VAR_SECTIONS = [
+  { id: 'habit', title: '行为习惯系统', max: 24, questions: [
+    { q: '过去 7 天里，你有几件「每天都做、时间基本固定」的事？', opts: ['0 件','1 件','2 件','3 件及以上'] },
+    { q: '过去 3 年，你坚持超过 3 个月、且完整做完或至今仍在做的事，有几件？', opts: ['0 件','1 件','2–3 件','4 件及以上'] },
+    { q: '最近给自己立过的 5 个计划，坚持超过 2 周的有几个？', opts: ['0–1 个','2 个','3 个','4–5 个'] },
+    { q: '上一次中断了一个坚持很久的习惯之后，怎么样了？', opts: ['彻底放弃了','偶尔做一下','隔很久重新捡起','很少中断'] },
+    { q: '过去一年，做「记录 → 回顾 → 调整」完整循环的频率？', opts: ['几乎没有','偶尔','有固定节奏','有节奏且真改过'] },
+    { q: '上一次「发现做法有问题，然后真的改了」距今多久？', opts: ['一年以上','半年到一年','一两个月','最近几周'] },
+    { q: '过去一周，每天花在「成长类活动」的时间？', opts: ['不足 30 分钟','30 分–1 小时','1–2 小时','2 小时以上'] },
+    { q: '过去一周，每天刷手机/短视频/无目的上网的时间？', opts: ['2 小时以上','1–2 小时','30 分–1 小时','不足 30 分钟'] } ] },
+  { id: 'motive', title: '动机与方向', max: 6, qual: 2, questions: [
+    { q: '现在让你立刻说一个具体、可衡量的目标，能说出来吗？稳定多久了？', opts: ['说不出来/很模糊','大概方向','具体但一年换过好几次','具体且稳定一年以上'] },
+    { q: '过去一年，做过一件「没人知道、带不来钱和认可、纯粹想做」的事吗？', opts: ['没有','有但很少且不久','有一两件能持续','经常有'] },
+    { q: '（定性）回忆最近一次让你纠结的真实选择，你最终保住的更接近哪种？', opts: ['钱/利益','认可/面子','安稳/确定性','成长/热爱/意义','关系/家人'] } ] },
+  { id: 'resilience', title: '抗压恢复力', max: 9, questions: [
+    { q: '上一次较大失败/打击，从最难受到基本恢复正常生活，花了多久？', opts: ['超半年/没走出来','一两个月到半年','几周内','几天内'] },
+    { q: '面对那次挫折，你实际怎么应对？', opts: ['回避/拖延','倾诉但没解决','自己消化后着手解决','主动复盘+列行动+立刻做'] },
+    { q: '有几个「能真正开口求助、且会帮你」的人？', opts: ['0 个','1 个','2–3 个','4 个及以上'] } ] },
+  { id: 'trajectory', title: '历史轨迹斜率', max: 9, questions: [
+    { q: '选最看重的一个领域，回顾过去 3 年，用可衡量标准看实际轨迹？', opts: ['明显下降','原地踏步/起伏','缓慢稳定上升','明显上升有质变'] },
+    { q: '回顾几次关键选择，是否「总是做出类似选择、得到类似结果」？', opts: ['一直重复踩同一个坑','有重复但有时避开','很少重复','主动复盘刻意避开老坑'] },
+    { q: '3 年前 vs 现在，有哪些列得出来、别人也看得到的变化？', opts: ['想不出','有一点','有实质变化','变化很大能列好几项'] } ] }
+];
+
+/* ============================================================
+   模块 2：现状基线
+============================================================ */
+const BFI10 = [
+  { q: '我是个外向、善于交际的人', dim: 'E', rev: false },
+  { q: '我是个安静、话不多的人', dim: 'E', rev: true },
+  { q: '我是个信任别人的人', dim: 'A', rev: false },
+  { q: '我是个爱挑毛病、喜欢争辩的人', dim: 'A', rev: true },
+  { q: '我是个做事彻底、可靠的人', dim: 'C', rev: false },
+  { q: '我是个懒散、粗心的人', dim: 'C', rev: true },
+  { q: '我是个放松、情绪稳定的人', dim: 'N', rev: false },
+  { q: '我是个紧张、容易焦虑的人', dim: 'N', rev: true },
+  { q: '我是个有想象力、爱思考的人', dim: 'O', rev: false },
+  { q: '我是个循规蹈矩、缺乏艺术兴趣的人', dim: 'O', rev: true }
+];
+const DIMS = [
+  { key: 'C', label: '尽责性' }, { key: 'N', label: '情绪稳定性' }, { key: 'O', label: '开放性' }, { key: 'A', label: '宜人性' }, { key: 'E', label: '外向性' }
+];
+const LIKERT = ['完全不同意','不太同意','中立','比较同意','完全同意'];
+const RAVEN = [
+  { grid: ['●','●●','●●●','●●','●●●','●●●●','●●●','●●●●'], opts: ['●●●●','●●●●●','●●●●●●','●●●●●●●'], answer: 1 },
+  { grid: ['○','○','○','○○','○○','○○','○○○','○○○'], opts: ['○','○○','○○○','○○○○'], answer: 2 },
+  { grid: ['■','▲','■','▲','■','▲','■','▲'], opts: ['■','▲','●','◆'], answer: 0 },
+  { grid: ['●●●●●','●●●●','●●●','●●●●','●●●','●●','●●●','●●'], opts: ['●','●●','●●●','●●●●'], answer: 0 },
+  { grid: ['◆','◆◆','◆◆◆','◆◆','◆◆◆','◆◆◆◆','◆◆◆','◆◆◆◆'], opts: ['◆◆◆','◆◆◆◆','◆◆◆◆◆','◆◆◆◆◆◆'], answer: 2 }
+];
+
+/* ============================================================
+   模块 3：环境场
+============================================================ */
+const ENV_DIMS = [
+  { id: 'family', title: '家庭背景', questions: [
+    { q: '你父母的家庭经济条件，相对你的同龄人大概处于什么水平？', ref: '外部参照：别只跟周围人比，想想同龄人的全国中位数。', opts: [{t:'明显高于同龄人',s:2},{t:'略高于',s:1},{t:'差不多',s:0},{t:'略低于',s:-1},{t:'明显低于',s:-2}] },
+    { q: '你父母的最高学历是？', opts: [{t:'本科及以上',s:2},{t:'大专',s:1},{t:'高中/中专',s:0},{t:'初中及以下',s:-1}] },
+    { q: '父母有没有能在关键时候帮上忙的人脉？', opts: [{t:'有，且能实际帮上',s:2},{t:'有一些',s:1},{t:'基本没有',s:0}] },
+    { q: '家庭对你是"持续支持"还是"需要你反哺"？', opts: [{t:'父母持续支持我',s:2},{t:'各自独立',s:0},{t:'需要我反哺',s:-2}] },
+    { q: '家里有没有以下隐性负担？', opts: [{t:'没有，家庭和睦',s:1},{t:'有患病成员/共同债务/不和睦',s:-2}] } ] },
+  { id: 'network', title: '社会网络', questions: [
+    { q: '能给你提供"不同行业信息"的人，来自几个不同圈子？', opts: [{t:'4个及以上圈子',s:2},{t:'2–3个',s:1},{t:'1个',s:0},{t:'几乎没有跨圈',s:-1}] },
+    { q: '真出了事（借钱/帮你扛），能指望上的人有几个？', opts: [{t:'4个及以上',s:2},{t:'2–3个',s:1},{t:'1个',s:0},{t:'0个',s:-2}] },
+    { q: '你最近一次真的动用人脉办成事，是什么时候？', opts: [{t:'最近半年内',s:2},{t:'一年内',s:1},{t:'一年以上没用过',s:-1},{t:'从没真正用过',s:-2}] },
+    { q: '最近一年，你新增了几个"有效关系"？', opts: [{t:'明显增加',s:2},{t:'略有增加',s:1},{t:'基本没变化',s:0},{t:'在减少',s:-2}] } ] },
+  { id: 'industry', title: '行业与时代', questions: [
+    { q: '过去一年，你所在行业的招聘量/薪资水平，是涨还是跌？', opts: [{t:'明显上涨',s:2},{t:'略有上涨',s:1},{t:'持平',s:0},{t:'下降',s:-2}] },
+    { q: '你的工作，换一个新人进来要多久才能独立上手？', opts: [{t:'一年以上，很难替代',s:2},{t:'几个月',s:1},{t:'几周',s:0},{t:'几天，谁都能干',s:-2}] },
+    { q: '新技术对你，是赋能还是替代？', opts: [{t:'赋能我，越做越强',s:2},{t:'影响不大',s:0},{t:'正在替代我的技能',s:-2}] },
+    { q: '行业周期 vs 个人周期，你是哪种？', opts: [{t:'行业和我都在上行',s:2},{t:'行业下行，但我在上行',s:2},{t:'行业上行，但我在下行',s:-1},{t:'行业和我都在下行',s:-2}] } ] },
+  { id: 'geo', title: '地域与流动性', questions: [
+    { q: '你所在城市，你这个岗位的机会多不多？', opts: [{t:'机会很多，随时能找到下家',s:2},{t:'有一些',s:1},{t:'机会少，不好跳槽',s:-1}] },
+    { q: '房贷这个"锚"有多重？', opts: [{t:'无房贷，随时能走',s:1},{t:'有房贷但可承受',s:0},{t:'房贷沉重，被绑死',s:-2}] },
+    { q: '户口/子女教育的束缚？', opts: [{t:'无束缚',s:1},{t:'有束缚',s:-1}] },
+    { q: '家庭照顾的束缚？', opts: [{t:'无负担',s:0},{t:'需照顾家人，被绑在本地',s:-2}] } ] },
+  { id: 'policy', title: '制度与运气窗口', questions: [
+    { q: '你现在有没有踩中具体的政策红利？窗口还开着吗？', opts: [{t:'正踩中，窗口还开着',s:2},{t:'无相关红利',s:0},{t:'政策对我不利',s:-2}] },
+    { q: '你所在的赛道，有没有真实的增长数据支撑？', opts: [{t:'有真实增长',s:2},{t:'没有，靠叙事撑',s:-1},{t:'没踩中任何赛道',s:0}] } ] }
+];
+
+/* ============================================================
+   模块 4：随机项
+============================================================ */
+const RAND_DIMS = [
+  { id: 'redundancy', title: '冗余度（缓冲）', questions: [
+    { q: '你的存款（+可变现资产），能支撑几个月的生活开销？', opts: [{t:'12个月以上',s:2},{t:'6–12个月',s:1},{t:'3–6个月',s:0},{t:'1–3个月',s:-1},{t:'几乎没有',s:-2}] },
+    { q: '除主业外，你有没有其他收入源？', opts: [{t:'有，且稳定',s:2},{t:'有，但不稳定',s:1},{t:'没有',s:-1}] },
+    { q: '你有没有基本的保险兜底？', opts: [{t:'有，较全面',s:1},{t:'只有基本医保',s:0},{t:'几乎没有',s:-1}] } ] },
+  { id: 'option', title: '可选择性（期权）', questions: [
+    { q: '你的技能，离开当前岗位/行业，还能用来赚钱吗？', opts: [{t:'完全能，跨行业通用',s:2},{t:'部分能',s:1},{t:'基本不能，绑死在这行',s:-2}] },
+    { q: '如果需要换城市，你能不能走？', opts: [{t:'随时能走',s:1},{t:'有房贷/户口束缚',s:-1}] },
+    { q: '你有几个"备选方向"？', opts: [{t:'3个以上',s:2},{t:'1–2个',s:1},{t:'0个',s:-2}] } ] },
+  { id: 'barbell', title: '杠铃结构', questions: [
+    { q: '你的精力/资金投入结构，是哪种？', opts: [{t:'大部分稳+小部分赌',s:2},{t:'全部押一个方向',s:-2},{t:'全部保守',s:0}] },
+    { q: '你在稳定之外，有没有保留一个"高风险高回报的尝试"？', opts: [{t:'有，且持续投入',s:2},{t:'偶尔尝试',s:1},{t:'没有',s:-1}] } ] }
+];
+
+/* ============================================================
+   模块初始化与通用渲染
+============================================================ */
+function initModule(id) {
+  CUR.answers = {};
+  if (id === 'var') { CUR.kind = 'var'; CUR.sec = 0; CUR.answers = {}; renderVarSection(); }
+  else if (id === 'base') { CUR.kind = 'base'; CUR.phase = 'bfi'; CUR.bfi = {}; renderBfi(); }
+  else if (id === 'env') { CUR.kind = 'env'; CUR.sec = 0; CUR.answers = {}; renderEnvSection(); }
+  else if (id === 'rand') { CUR.kind = 'rand'; CUR.sec = 0; CUR.answers = {}; renderRandSection(); }
+}
+
+function topbar(label, onBack) {
+  return `<div class="topbar"><button class="btn ghost" onclick="${onBack}">← 返回</button><span class="sub">${label}</span></div>`;
+}
+function scrollToMiss(miss) {
+  const qEls = document.querySelectorAll('.q');
+  qEls.forEach((el, i) => el.classList.toggle('q-miss', i === miss));
+  if (qEls[miss]) qEls[miss].scrollIntoView({ behavior: 'smooth', block: 'center' });
+}
+
+/* ============================================================
+   模块 1：变化率
+============================================================ */
+function renderChange(app) {
+  renderVarSection(app);
+}
+function renderVarSection(app) {
+  const sec = VAR_SECTIONS[CUR.sec];
+  const a = CUR.answers[sec.id] || [];
+  document.getElementById('app').innerHTML = `<div class="card">${topbar('变化率 · ' + sec.title + '（' + (CUR.sec+1) + '/' + VAR_SECTIONS.length + '）', 'view=\'home\';render()')}
+    <div class="progress"><div class="progress-fill" style="width:${(CUR.sec+1)/(VAR_SECTIONS.length+1)*100}%"></div></div>
+    ${sec.questions.map((q, qi) => `<div class="q"><div class="q-title">${qi+1}. ${q.q}</div><div class="q-opts">${q.opts.map((o, oi) => `<div class="q-opt ${a[qi]===oi?'sel':''}" onclick="pickVar(${qi},${oi})">${o}</div>`).join('')}</div></div>`).join('')}
+    <button class="btn primary" style="width:100%;" onclick="nextVar()">${CUR.sec === VAR_SECTIONS.length-1 ? '进入成长速度' : '下一步'}</button></div>`;
+}
+function pickVar(qi, oi) { const sec = VAR_SECTIONS[CUR.sec]; if (!CUR.answers[sec.id]) CUR.answers[sec.id] = []; CUR.answers[sec.id][qi] = oi; render(); }
+function nextVar() {
+  const sec = VAR_SECTIONS[CUR.sec]; const a = CUR.answers[sec.id] || [];
+  const miss = sec.questions.findIndex((_, i) => { if (sec.qual === i) return false; return a[i] === undefined; });
+  if (miss !== -1) { scrollToMiss(miss); return; }
+  if (CUR.sec < VAR_SECTIONS.length-1) { CUR.sec++; render(); }
+  else { startSpeed(); }
+}
+
+// 成长速度（简化：可跳过）
+const SYMBOLS = ['★','☆','●','○','■','□','▲','△','◆','◇','♥','♠'];
+let speedState = { mapping: {}, pretest: 0, posttest: 0, mode: 'pretest', timer: null };
+function startSpeed() {
+  speedState = { mapping: {}, pretest: 0, posttest: 0, mode: 'pretest', timer: null };
+  const nums = [1,2,3,4,5,6,7,8,9,10,11,12].sort(() => Math.random()-0.5);
+  SYMBOLS.forEach((s, i) => speedState.mapping[s] = nums[i]);
+  renderSpeed(app);
+}
+function renderSpeed() {
+  const st = speedState;
+  if (st.mode === 'pretest' || st.mode === 'posttest') {
+    const r = st.mode === 'pretest' ? st.pretest : st.posttest;
+    const s = SYMBOLS[Math.floor(Math.random()*SYMBOLS.length)];
+    const c = st.mapping[s];
+    const pool = [1,2,3,4,5,6,7,8,9,10,11,12].filter(n => n !== c).sort(() => Math.random()-0.5).slice(0,3);
+    const opts = [c, ...pool].sort(() => Math.random()-0.5);
+    document.getElementById('app').innerHTML = `<div class="card">${topbar('成长速度 · ' + (st.mode==='pretest'?'前测':'后测'), 'view=\'home\';render()')}
+      <div class="symbol-big">${s}</div><div class="opt-grid">${opts.map(n => `<div class="q-opt" onclick="answerSpeed(${n},${c})">${n}</div>`).join('')}</div>
+      <p class="sub" style="text-align:center; margin-top:10px;">已答对 ${r} 个（约 30 秒后自动进入下一步，也可直接跳）</p>
+      <button class="btn" style="width:100%; margin-top:12px;" onclick="${st.mode==='pretest'?'speedToLearn()':'speedToReality()'}">${st.mode==='pretest'?'跳过前测':'完成后测'}</button>
+      <button class="btn ghost" style="width:100%;" onclick="skipSpeed()">跳过成长速度（按默认中等计）</button></div>`;
+    clearTimeout(st.timer);
+    st.timer = setTimeout(() => { if (st.mode === 'pretest') speedToLearn(); else speedToReality(); }, 30000);
+  } else if (st.mode === 'learn') {
+    document.getElementById('app').innerHTML = `<div class="card">${topbar('成长速度 · 学习', 'view=\'home\';render()')}
+      <p class="sub" style="margin-bottom:14px;">记忆下面的符号-数字对应表，记住了就进入后测。</p>
+      <div class="map-grid">${SYMBOLS.map(s => `<div class="map-cell"><span class="s">${s}</span><span class="n">${st.mapping[s]}</span></div>`).join('')}</div>
+      <button class="btn primary" style="width:100%;" onclick="speedToPost()">我记住了，进入后测</button></div>`;
+  }
+}
+function answerSpeed(n, c) { const st = speedState; if (n === c) { if (st.mode==='pretest') st.pretest++; else st.posttest++; } renderSpeed(); }
+function speedToLearn() { clearTimeout(speedState.timer); speedState.mode = 'learn'; renderSpeed(); }
+function speedToPost() { speedState.mode = 'posttest'; renderSpeed(); }
+function speedToReality() { clearTimeout(speedState.timer); finishChange(); }
+function skipSpeed() { clearTimeout(speedState.timer); finishChange(true); }
+function finishChange(skipped) {
+  let scores = {};
+  const raw = {};
+  VAR_SECTIONS.forEach(sec => {
+    const a = CUR.answers[sec.id] || [];
+    let sum = 0;
+    const items = [];
+    sec.questions.forEach((q, qi) => {
+      const ans = q.opts[a[qi]] || '未答';
+      if (sec.qual === qi) { items.push({ q: q.q, a: ans, qual: true }); return; }
+      sum += (a[qi] || 0);
+      items.push({ q: q.q, a: ans });
+    });
+    scores[sec.id] = Math.round(sum / sec.max * 100);
+    raw[sec.id] = { title: sec.title, score: scores[sec.id], items };
+  });
+  let speed = 50, speedSkipped = true;
+  if (!skipped) { speed = Math.max(0, Math.min(100, Math.round((speedState.posttest - speedState.pretest) / 2.5 * 100))); speedSkipped = false; }
+  scores.speed = speed;
+  raw.speed = { title: '成长速度', score: speed, skipped: speedSkipped, pretest: speedState.pretest, posttest: speedState.posttest };
+  const total = Math.round((scores.habit + scores.motive + scores.resilience + scores.trajectory + scores.speed) / 5);
+  const labels = {habit:'行为习惯',motive:'动机方向',resilience:'抗压恢复',trajectory:'历史轨迹',speed:'成长速度'};
+  const weakest = labels[Object.keys(labels).sort((a,b) => scores[a]-scores[b])[0]];
+  R.change = { total, scores, weakest, raw };
+  saveResult('change', '综合 ' + total + '/100 · 最弱' + weakest, R.change);
+  CUR.answers = {}; view = 'home'; render();
+}
+
+/* ============================================================
+   模块 2：现状基线
+============================================================ */
+function renderBaseline(app) { if (CUR.phase === 'bfi') renderBfi(); else if (CUR.phase === 'raven') renderRaven(); else if (CUR.phase === 'digit') renderDigit(); else renderHealth(); }
+function renderBfi() {
+  document.getElementById('app').innerHTML = `<div class="card">${topbar('现状基线 · 人格（BFI-10）', 'view=\'home\';render()')}
+    ${BFI10.map((b, qi) => `<div class="q"><div class="q-title">${qi+1}. ${b.q}</div><div class="likert">${LIKERT.map((l, oi) => `<div class="lk ${CUR.bfi[qi]===oi?'sel':''}" onclick="pickBfi(${qi},${oi})">${l}</div>`).join('')}</div></div>`).join('')}
+    <button class="btn primary" style="width:100%;" onclick="nextBfi()">下一步</button></div>`;
+}
+function pickBfi(qi, oi) { CUR.bfi[qi] = oi; render(); }
+function nextBfi() { const miss = BFI10.findIndex((_, i) => CUR.bfi[i] === undefined); if (miss !== -1) { scrollToMiss(miss); return; } CUR.phase = 'raven'; CUR.ravenIdx = 0; CUR.ravenCorrect = 0; render(); }
+function renderRaven() {
+  if (CUR.ravenIdx >= RAVEN.length) { CUR.phase = 'digit'; CUR.digitMode='f'; CUR.digitLen=3; CUR.df=0; CUR.db=0; digitStart(); return; }
+  const r = RAVEN[CUR.ravenIdx];
+  const cells = [...r.grid].map(g => `<div class="raven-cell">${g}</div>`); cells.push(`<div class="raven-cell missing">?</div>`);
+  document.getElementById('app').innerHTML = `<div class="card">${topbar('现状基线 · 图形推理（' + (CUR.ravenIdx+1) + '/' + RAVEN.length + '）', 'view=\'home\';render()')}
+    <div class="raven-grid">${cells.join('')}</div><div class="opt-grid">${r.opts.map((o, oi) => `<div class="q-opt" onclick="answerRaven(${oi})">${o}</div>`).join('')}</div></div>`;
+}
+function answerRaven(oi) { if (oi === RAVEN[CUR.ravenIdx].answer) CUR.ravenCorrect++; CUR.ravenIdx++; render(); }
+function renderDigit() {
+  if (CUR.digitShow) {
+    document.getElementById('app').innerHTML = `<div class="card">${topbar('现状基线 · 数字广度（' + (CUR.digitMode==='f'?'正背':'倒背') + '）', 'view=\'home\';render()')}<div class="digit-display">${CUR.digitSeq.join(' ')}</div></div>`;
+    clearTimeout(CUR.dt); CUR.dt = setTimeout(() => { CUR.digitShow = false; render(); }, 2000);
+  } else {
+    document.getElementById('app').innerHTML = `<div class="card">${topbar('现状基线 · 数字广度（' + (CUR.digitMode==='f'?'正背':'倒背') + '）', 'view=\'home\';render()')}
+      <input class="digit-input" id="digitInput" placeholder="输入数字" inputmode="numeric">
+      <button class="btn primary" style="width:100%; margin-top:12px;" onclick="checkDigit()">确认</button>
+      <button class="btn ghost" style="width:100%;" onclick="digitNext()">跳过数字广度</button></div>`;
+    setTimeout(() => { const el = document.getElementById('digitInput'); if (el) el.focus(); }, 100);
+  }
+}
+function digitStart() {
+  CUR.digitSeq = []; for (let i = 0; i < CUR.digitLen; i++) CUR.digitSeq.push(Math.floor(Math.random()*10));
+  CUR.digitShow = true; render();
+}
+function checkDigit() {
+  const val = document.getElementById('digitInput').value.replace(/\s/g, '');
+  const expect = CUR.digitMode==='f' ? CUR.digitSeq.join('') : CUR.digitSeq.slice().reverse().join('');
+  if (val === expect) { if (CUR.digitMode==='f') CUR.df = CUR.digitLen; else CUR.db = CUR.digitLen; CUR.digitLen++; digitStart(); }
+  else digitNext();
+}
+function digitNext() { if (CUR.digitMode === 'f') { CUR.digitMode = 'b'; CUR.digitLen = 2; digitStart(); } else { CUR.phase = 'health'; render(); } }
+function renderHealth() {
+  document.getElementById('app').innerHTML = `<div class="card">${topbar('现状基线 · 健康精力', 'view=\'home\';render()')}
+    <div class="field"><label>身高（cm）</label><input id="h1" type="number"></div>
+    <div class="field"><label>体重（kg）</label><input id="h2" type="number"></div>
+    <div class="field"><label>日均睡眠时长</label><select id="h4"><option value="">—</option><option>不足6小时</option><option>6–7小时</option><option>7–8小时</option><option>8小时以上</option></select></div>
+    <button class="btn primary" style="width:100%;" onclick="finishBaseline()">完成</button></div>`;
+}
+function finishBaseline() {
+  const scores = {};
+  DIMS.forEach(d => { const items = BFI10.map((b,i)=>({...b,i})).filter(b=>b.dim===d.key); let sum=0; items.forEach(b=>{let v=CUR.bfi[b.i]+1; if(b.rev)v=6-v; sum+=v;}); scores[d.key]=Math.round((sum/items.length-1)/4*100); });
+  const bmi = (document.getElementById('h2').value && document.getElementById('h1').value) ? (document.getElementById('h2').value/Math.pow(document.getElementById('h1').value/100,2)).toFixed(1) : null;
+  const sleep = document.getElementById('h4').value || '';
+  const raw = {
+    bigFive: DIMS.map(d => ({ label: d.label, score: scores[d.key] })),
+    bfiAnswers: BFI10.map((b, i) => ({ q: b.q, a: LIKERT[CUR.bfi[i]] || '未答' })),
+    raven: CUR.ravenCorrect + '/' + RAVEN.length,
+    digit: (CUR.df||0) + (CUR.db||0),
+    bmi, sleep
+  };
+  R.baseline = { scores, raven: CUR.ravenCorrect + '/' + RAVEN.length, digit: (CUR.df||0) + (CUR.db||0), bmi, raw };
+  saveResult('baseline', '大五 + 认知 + 健康', R.baseline);
+  CUR.answers = {}; view = 'home'; render();
+}
+
+/* ============================================================
+   模块 3：环境场
+============================================================ */
+function renderEnv(app) { renderEnvSection(app); }
+function renderEnvSection(app) {
+  const dim = ENV_DIMS[CUR.sec]; const a = CUR.answers[dim.id] || {};
+  document.getElementById('app').innerHTML = `<div class="card">${topbar('环境场 · ' + dim.title + '（' + (CUR.sec+1) + '/' + ENV_DIMS.length + '）', 'view=\'home\';render()')}
+    <div class="progress"><div class="progress-fill" style="width:${(CUR.sec+1)/(ENV_DIMS.length+1)*100}%"></div></div>
+    ${dim.questions.map((q, qi) => `<div class="q">${q.ref?`<div class="ref">${q.ref}</div>`:''}<div class="q-title">${qi+1}. ${q.q}</div><div class="q-opts">${q.opts.map((o, oi) => `<div class="q-opt ${a[qi]===oi?'sel':''}" onclick="pickEnv(${qi},${oi})">${o.t}</div>`).join('')}</div></div>`).join('')}
+    <button class="btn primary" style="width:100%;" onclick="nextEnv()">${CUR.sec === ENV_DIMS.length-1 ? '完成' : '下一步'}</button></div>`;
+}
+function pickEnv(qi, oi) { const dim = ENV_DIMS[CUR.sec]; if (!CUR.answers[dim.id]) CUR.answers[dim.id] = []; CUR.answers[dim.id][qi] = oi; render(); }
+function nextEnv() {
+  const dim = ENV_DIMS[CUR.sec]; const a = CUR.answers[dim.id] || [];
+  const miss = dim.questions.findIndex((_, i) => a[i] === undefined);
+  if (miss !== -1) { scrollToMiss(miss); return; }
+  if (CUR.sec < ENV_DIMS.length-1) { CUR.sec++; render(); }
+  else {
+    const tails = [], heads = [];
+    const raw = {};
+    ENV_DIMS.forEach(d => {
+      const aa = CUR.answers[d.id] || [];
+      let sum=0, min=0, max=0;
+      const items = [];
+      d.questions.forEach((q,qi) => {
+        const o = q.opts[aa[qi]] || { t: '未答', s: 0 };
+        sum += o.s; min += Math.min(...q.opts.map(x=>x.s)); max += Math.max(...q.opts.map(x=>x.s));
+        items.push({ q: q.q, a: o.t, s: o.s });
+      });
+      const sc = Math.round((sum-min)/(max-min)*100);
+      raw[d.id] = { title: d.title, score: sc, items };
+      if (sc >= 55) tails.push(d.title); else if (sc <= 45) heads.push(d.title);
+    });
+    R.env = { summary: tails.length + ' 顺 · ' + heads.length + ' 逆', raw };
+    saveResult('env', R.env.summary, R.env);
+    CUR.answers = {}; view = 'home'; render();
+  }
+}
+
+/* ============================================================
+   模块 4：随机项
+============================================================ */
+function renderRandom(app) { renderRandSection(app); }
+function renderRandSection(app) {
+  const dim = RAND_DIMS[CUR.sec]; const a = CUR.answers[dim.id] || {};
+  document.getElementById('app').innerHTML = `<div class="card">${topbar('随机项 · ' + dim.title + '（' + (CUR.sec+1) + '/' + RAND_DIMS.length + '）', 'view=\'home\';render()')}
+    ${dim.questions.map((q, qi) => `<div class="q"><div class="q-title">${qi+1}. ${q.q}</div><div class="q-opts">${q.opts.map((o, oi) => `<div class="q-opt ${a[qi]===oi?'sel':''}" onclick="pickRand(${qi},${oi})">${o.t}</div>`).join('')}</div></div>`).join('')}
+    <button class="btn primary" style="width:100%;" onclick="nextRand()">${CUR.sec === RAND_DIMS.length-1 ? '完成' : '下一步'}</button></div>`;
+}
+function pickRand(qi, oi) { const dim = RAND_DIMS[CUR.sec]; if (!CUR.answers[dim.id]) CUR.answers[dim.id] = []; CUR.answers[dim.id][qi] = oi; render(); }
+function nextRand() {
+  const dim = RAND_DIMS[CUR.sec]; const a = CUR.answers[dim.id] || [];
+  const miss = dim.questions.findIndex((_, i) => a[i] === undefined);
+  if (miss !== -1) { scrollToMiss(miss); return; }
+  if (CUR.sec < RAND_DIMS.length-1) { CUR.sec++; render(); }
+  else {
+    const scores = {};
+    const raw = {};
+    RAND_DIMS.forEach(d => {
+      const aa = CUR.answers[d.id] || [];
+      let sum=0, min=0, max=0;
+      const items = [];
+      d.questions.forEach((q,qi) => {
+        const o = q.opts[aa[qi]] || { t: '未答', s: 0 };
+        sum += o.s; min += Math.min(...q.opts.map(x=>x.s)); max += Math.max(...q.opts.map(x=>x.s));
+        items.push({ q: q.q, a: o.t, s: o.s });
+      });
+      scores[d.id] = Math.round((sum-min)/(max-min)*100);
+      raw[d.id] = { title: d.title, score: scores[d.id], items };
+    });
+    const avg = Math.round((scores.redundancy + scores.option + scores.barbell) / 3);
+    R.random = { scores, level: avg >= 70 ? '反脆弱' : avg >= 40 ? '强韧' : '脆弱', avg, raw };
+    saveResult('random', '等级：' + R.random.level, R.random);
+    CUR.answers = {}; view = 'home'; render();
+  }
+}
+
+/* ============================================================
+   总报告
+============================================================ */
+function renderResult(app) {
+  const diags = [];
+  if (R.baseline && R.change) {
+    const c = R.baseline.scores.C, n = R.baseline.scores.N;
+    if (c >= 60 && n >= 60 && R.change.scores.habit < 50) diags.push('大五「尽责性+情绪稳定性」偏高，但变化率「行为习惯」偏低——你有稳定输出的底子，但习惯系统没建立起来。');
+    if (c < 40 && R.change.scores.habit >= 60) diags.push('大五「尽责性」偏低，但行为习惯分偏高——可能自评低估了尽责性，或以环境倒逼维持习惯。');
+  }
+  if (R.change && R.change.scores.motive >= 60 && R.change.scores.trajectory < 40) diags.push('目标清晰、内在驱动强，但历史轨迹平——有方向没在动，缺的是执行系统。');
+  if (R.env && R.random) {
+    if (R.random.avg >= 60 && R.env.summary.startsWith('0 顺')) diags.push('反脆弱性不低，但环境场全是逆风——你的抗波动能力在，但外部机会结构差，重点看「流动性」能否帮你换场。');
+  }
+  if (diags.length === 0) diags.push('各模块较为一致，未发现明显的内部矛盾。');
+
+  // 综合判断：最该动的杠杆
+  let lever = '';
+  if (R.change) {
+    const weakest = R.change.weakest;
+    lever = '你最该动的杠杆是变化率的「' + weakest + '」——它是得分最低的维度，也是长期斜率的最强因子。';
+  }
+  if (R.env && R.random && R.random.level === '脆弱') lever += ' 同时，反脆弱等级为「脆弱」，优先补「冗余度」（存够缓冲）再增加「可选择性」。';
+
+  const bmiTxt = (R.baseline && R.baseline.bmi) ? '（BMI ' + R.baseline.bmi + '）' : '';
+
+  app.innerHTML = `<div class="card">
+    <h1 style="text-align:center;">个人画像总报告</h1>
+    <p class="sub" style="text-align:center; margin-bottom:16px;">四个模块的综合画像 · 交叉印证 · 最该动的杠杆</p>
+  </div>
+  <div class="card">
+    <h2>四模块摘要</h2>
+    ${R.change ? `<div class="dim-row"><div class="dname">变化率（你怎么走）</div><div class="dval">${R.change.total} / 100</div></div><div class="sub">最弱：${R.change.weakest}</div>` : '<p class="sub">变化率：未完成</p>'}
+    ${R.baseline ? `<div class="dim-row"><div class="dname">现状基线（你在哪）</div><div class="dval">大五 + 认知 + 健康${bmiTxt}</div></div>` : '<p class="sub">现状基线：未完成</p>'}
+    ${R.env ? `<div class="dim-row"><div class="dname">环境场（外部给什么）</div><div class="dval">${R.env.summary}</div></div>` : '<p class="sub">环境场：未完成</p>'}
+    ${R.random ? `<div class="dim-row"><div class="dname">随机项（扛波动）</div><div class="dval">${R.random.level}</div></div>` : '<p class="sub">随机项：未完成</p>'}
+  </div>
+  <div class="card">
+    <h2>交叉印证</h2>
+    ${diags.map(d => `<div class="diag">${d}</div>`).join('')}
+  </div>
+  <div class="card">
+    <h2>最该动的杠杆</h2>
+    <p class="verdict">${lever || '完成四个模块后给出杠杆建议。'}</p>
+  </div>
+  <div class="card">
+    <h2>下一步</h2>
+    <p class="verdict">这份总报告是「个人画像」的全局视图。想看某个模块的深度结果（雷达图、风场图、详细解读），去对应模块的独立测评里重做并细看。记住：这不是算命，是体检——价值在于让你看清自己，然后去动那根能动的杠杆。</p>
+  </div>
+  <div class="card">
+    <h2>原始数据表</h2>
+    <p class="sub" style="margin-bottom:4px;">规则引擎算出的全部原始数据（白盒、可验证）。AI 解读严格基于这张表，不重算、不添加表外信息。</p>
+    ${renderDataTableAsTable()}
+    <div style="display:flex; gap:10px; flex-wrap:wrap; margin-top:12px;">
+      <button class="btn" onclick="copyData()">复制 JSON</button>
+      <button class="btn" onclick="downloadCSV()">下载表格（CSV）</button>
+      <button class="btn" onclick="downloadImage()">下载高清图片</button>
+    </div>
+  </div>
+  <div class="card">
+    <h2>AI 深度解读</h2>
+    <p class="sub" style="margin-bottom:10px;">基于你的数据表，生成「情况说明 / 行动建议 / 人生趋势（条件式区间）」。由云端大模型生成，无需自己填 key。</p>
+    <div class="field"><label>选择模型</label><select id="aiModel">${renderModelOptions()}</select></div>
+    <button class="btn primary" style="width:100%;" onclick="callAI()">生成 AI 解读</button>
+    <div id="aiOut" style="margin-top:14px; text-align:left; line-height:1.7;"></div>
+  </div>
+  <button class="btn" style="width:100%;" onclick="view='home';render()">返回总入口</button>`;
+  ensureModels();
+}
+
+/* ============================================================
+   各模块结果页
+============================================================ */
+function barColor(sc) { return sc >= 70 ? 'var(--good)' : sc >= 50 ? 'var(--accent)' : sc >= 35 ? 'var(--amber)' : 'var(--bad)'; }
+function gradeOf(sc) { return sc >= 70 ? '优秀' : sc >= 50 ? '中等偏上' : sc >= 35 ? '中等偏下' : '偏弱'; }
+
+function renderVarResult(app) {
+  if (!R.change) { view = 'home'; render(); return; }
+  const r = R.change;
+  const dims = [
+    { key: 'habit', label: '行为习惯', hint: '长期斜率的根基' },
+    { key: 'motive', label: '动机方向', hint: '往哪走' },
+    { key: 'resilience', label: '抗压恢复', hint: '扛不扛得住波动' },
+    { key: 'trajectory', label: '历史轨迹', hint: '真实斜率' },
+    { key: 'speed', label: '成长速度', hint: '学得有多快' }
+  ];
+  app.innerHTML = `<div class="card">${topbar('变化率 · 结果', "view='home';render()")}
+    ${historyNote ? `<p class="sub" style="color:var(--amber); margin-bottom:8px;">${historyNote}</p>` : ''}
+    <h2>综合 ${r.total} / 100</h2><p class="sub">最弱维度：${r.weakest}（这是你最该先补的一块）</p></div>
+    <div class="card"><h2>五维得分</h2>
+      ${dims.map(d => { const sc = r.scores[d.key]; return `<div class="dim-row"><div style="flex:1;"><div class="dname">${d.label} <span class="sub">${d.hint}</span></div><div class="bar"><div class="bar-fill" style="width:${sc}%; background:${barColor(sc)};"></div></div></div><div class="dval" style="color:${barColor(sc)};">${sc}</div></div>`; }).join('')}
+    </div>
+    <div class="card"><h2>分档解读</h2>
+      ${dims.map(d => `<div class="diag"><b>${d.label}</b>：${gradeOf(r.scores[d.key])}（${r.scores[d.key]} 分）</div>`).join('')}
+    </div>
+    <button class="btn" style="width:100%;" onclick="go('var')">重新测评变化率</button>`;
+}
+
+function renderBaseResult(app) {
+  if (!R.baseline) { view = 'home'; render(); return; }
+  const b = R.baseline;
+  const hint = { C: '自律可靠 vs 懒散拖延', N: '冷静抗压 vs 焦虑波动', O: '好奇开放 vs 循规蹈矩', A: '信任合作 vs 挑剔争辩', E: '外向社交 vs 内向安静' };
+  app.innerHTML = `<div class="card">${topbar('现状基线 · 结果', "view='home';render()")}
+    ${historyNote ? `<p class="sub" style="color:var(--amber); margin-bottom:8px;">${historyNote}</p>` : ''}
+    <h2>大五人格</h2>
+    ${DIMS.map(d => { const sc = b.scores[d.key]; return `<div class="dim-row"><div style="flex:1;"><div class="dname">${d.label} <span class="sub">${hint[d.key]}</span></div><div class="bar"><div class="bar-fill" style="width:${sc}%; background:${barColor(sc)};"></div></div></div><div class="dval" style="color:${barColor(sc)};">${sc}</div></div>`; }).join('')}
+    <p class="sub" style="margin-top:8px;">大五无总分，只有五维画像，也无好坏之分。</p>
+  </div>
+  <div class="card"><h2>认知与健康</h2>
+    <div class="dim-row"><div class="dname">图形推理（瑞文式）</div><div class="dval">${b.raven}</div></div>
+    <div class="dim-row"><div class="dname">数字广度</div><div class="dval">${b.digit}</div></div>
+    ${b.bmi ? `<div class="dim-row"><div class="dname">BMI</div><div class="dval">${b.bmi}</div></div>` : ''}
+    ${b.raw.sleep ? `<div class="dim-row"><div class="dname">睡眠</div><div class="dval">${b.raw.sleep}</div></div>` : ''}
+    <p class="sub" style="margin-top:8px;">认知为仿制范式，仅量级参考，非临床 / 招聘依据。</p>
+  </div>
+  <button class="btn" style="width:100%;" onclick="go('base')">重新测评现状基线</button>`;
+}
+
+function renderEnvResult(app) {
+  if (!R.env) { view = 'home'; render(); return; }
+  app.innerHTML = `<div class="card">${topbar('环境场 · 结果', "view='home';render()")}
+    ${historyNote ? `<p class="sub" style="color:var(--amber); margin-bottom:8px;">${historyNote}</p>` : ''}
+    <h2>${R.env.summary}</h2><p class="sub">顺风（绿）逆风（红），无总分，看能不能对冲。</p></div>
+    <div class="card"><h2>五维风向</h2>
+      ${ENV_DIMS.map(d => { const sc = R.env.raw[d.id].score; const dir = sc >= 55 ? '顺风' : sc <= 45 ? '逆风' : '中性'; const col = sc >= 55 ? 'var(--good)' : sc <= 45 ? 'var(--bad)' : 'var(--muted)'; const half = Math.abs(sc - 50) * 2; const bar = sc >= 50
+        ? `<div style="position:absolute; left:50%; top:0; width:${half}%; height:10px; background:${col}; border-radius:0 5px 5px 0;"></div>`
+        : `<div style="position:absolute; right:50%; top:0; width:${half}%; height:10px; background:${col}; border-radius:5px 0 0 5px;"></div>`; return `
+        <div style="margin-bottom:14px;"><div class="dname" style="font-size:14px;">${d.title} <span class="sub">${dir} · ${sc}</span></div>
+        <div style="position:relative; height:10px; background:#efefe9; border-radius:5px; margin:6px 0;"><div style="position:absolute; left:50%; top:-2px; width:1px; height:14px; background:#ccc;"></div>${bar}</div></div>`; }).join('')}
+    </div>
+    <button class="btn" style="width:100%;" onclick="go('env')">重新采集环境场</button>`;
+}
+
+function renderRandResult(app) {
+  if (!R.random) { view = 'home'; render(); return; }
+  const dims = [
+    { key: 'redundancy', label: '冗余度（缓冲）', hint: '扛不扛得住' },
+    { key: 'option', label: '可选择性（期权）', hint: '能不能换场' },
+    { key: 'barbell', label: '杠铃结构', hint: '稳中带赌' }
+  ];
+  app.innerHTML = `<div class="card">${topbar('随机项 · 结果', "view='home';render()")}
+    ${historyNote ? `<p class="sub" style="color:var(--amber); margin-bottom:8px;">${historyNote}</p>` : ''}
+    <h2>反脆弱等级：${R.random.level}</h2><p class="sub">综合 ${R.random.avg} / 100（这不是运气分，是"对波动的准备"）</p></div>
+    <div class="card"><h2>三信号</h2>
+      ${dims.map(d => { const sc = R.random.scores[d.key]; return `<div class="dim-row"><div style="flex:1;"><div class="dname">${d.label} <span class="sub">${d.hint}</span></div><div class="bar"><div class="bar-fill" style="width:${sc}%; background:${barColor(sc)};"></div></div></div><div class="dval" style="color:${barColor(sc)};">${sc}</div></div>`; }).join('')}
+    </div>
+    <div class="card"><p class="verdict">收尾一问：当你的所有预测都失效时，你会怎样？脆弱 = 崩掉，强韧 = 不死，反脆弱 = 反而受益。</p></div>
+    <button class="btn" style="width:100%;" onclick="go('rand')">重新测评随机项</button>`;
+}
+
+/* ============================================================
+   原始数据表 & AI 解读
+============================================================ */
+function dataTableJSON() {
+  const t = {};
+  if (R.change) t.变化率 = { 综合分: R.change.total, 最弱维度: R.change.weakest, 各维度: R.change.raw };
+  if (R.baseline) t.现状基线 = R.baseline.raw;
+  if (R.env) t.环境场 = { 概要: R.env.summary, 各维度: R.env.raw };
+  if (R.random) t.随机项 = { 反脆弱等级: R.random.level, 综合分: R.random.avg, 各维度: R.random.raw };
+  return t;
+}
+
+function renderDataTableAsTable() {
+  let html = '<table class="dt"><thead><tr><th>题目 / 维度</th><th>你的答案</th><th class="dnum">分数</th></tr></thead><tbody>';
+  if (R.change) {
+    html += '<tr class="dt-mod"><td colspan="3">变化率 · 综合 ' + R.change.total + ' / 100 · 最弱「' + R.change.weakest + '」</td></tr>';
+    VAR_SECTIONS.forEach(sec => {
+      const r = R.change.raw[sec.id];
+      html += '<tr class="dt-dim"><td colspan="2">' + sec.title + '</td><td class="dnum">' + r.score + '</td></tr>';
+      r.items.forEach(it => {
+        const scoreCell = it.qual ? '定性' : '—';
+        html += '<tr><td>' + it.q + '</td><td>' + it.a + '</td><td class="dnum">' + scoreCell + '</td></tr>';
+      });
+    });
+    const sp = R.change.raw.speed;
+    html += '<tr class="dt-dim"><td colspan="2">成长速度</td><td class="dnum">' + sp.score + (sp.skipped ? '（未测）' : '') + '</td></tr>';
+  }
+  if (R.baseline) {
+    const b = R.baseline.raw;
+    html += '<tr class="dt-mod"><td colspan="3">现状基线 · 瑞文 ' + b.raven + ' · 数字广度 ' + b.digit + (b.bmi ? ' · BMI ' + b.bmi : '') + '</td></tr>';
+    b.bigFive.forEach(d => html += '<tr><td>' + d.label + '</td><td>—</td><td class="dnum">' + d.score + '</td></tr>');
+    if (b.sleep) html += '<tr><td>睡眠</td><td>' + b.sleep + '</td><td class="dnum">—</td></tr>';
+  }
+  if (R.env) {
+    html += '<tr class="dt-mod"><td colspan="3">环境场 · ' + R.env.summary + '</td></tr>';
+    ENV_DIMS.forEach(d => {
+      const r = R.env.raw[d.id];
+      html += '<tr class="dt-dim"><td colspan="2">' + d.title + '</td><td class="dnum">' + r.score + '</td></tr>';
+      r.items.forEach(it => html += '<tr><td>' + it.q + '</td><td>' + it.a + '</td><td class="dnum">' + (it.s > 0 ? '+' + it.s : it.s) + '</td></tr>');
+    });
+  }
+  if (R.random) {
+    html += '<tr class="dt-mod"><td colspan="3">随机项 · 等级「' + R.random.level + '」 · 综合 ' + R.random.avg + '</td></tr>';
+    RAND_DIMS.forEach(d => {
+      const r = R.random.raw[d.id];
+      html += '<tr class="dt-dim"><td colspan="2">' + d.title + '</td><td class="dnum">' + r.score + '</td></tr>';
+      r.items.forEach(it => html += '<tr><td>' + it.q + '</td><td>' + it.a + '</td><td class="dnum">' + (it.s > 0 ? '+' + it.s : it.s) + '</td></tr>');
+    });
+  }
+  html += '</tbody></table>';
+  return html;
+}
+
+function escapeHtml(s) { return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+
+function mdToHtml(md) {
+  let h = escapeHtml(md);
+  h = h.replace(/^### (.+)$/gm, '<h2 style="margin:14px 0 6px;">$1</h2>');
+  h = h.replace(/^## (.+)$/gm, '<h2 style="margin:14px 0 6px;">$1</h2>');
+  h = h.replace(/^# (.+)$/gm, '<h2 style="margin:14px 0 6px;">$1</h2>');
+  h = h.replace(/^- (.+)$/gm, '<div style="padding-left:14px; margin:4px 0;">· $1</div>');
+  h = h.replace(/^\d+\. (.+)$/gm, '<div style="padding-left:14px; margin:4px 0;">$1</div>');
+  h = h.replace(/\*\*(.+?)\*\*/g, '<b>$1</b>');
+  h = h.replace(/\n/g, '<br>');
+  return h;
+}
+
+function fallbackCopy(text) {
+  const ta = document.createElement('textarea'); ta.value = text; document.body.appendChild(ta); ta.select();
+  try { document.execCommand('copy'); alert('已复制到剪贴板'); } catch(e) { alert('复制失败，请手动选择复制'); }
+  document.body.removeChild(ta);
+}
+function copyData() {
+  const json = JSON.stringify(dataTableJSON(), null, 2);
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    navigator.clipboard.writeText(json).then(() => alert('已复制到剪贴板')).catch(() => fallbackCopy(json));
+  } else fallbackCopy(json);
+}
+
+function downloadCSV() {
+  const rows = [];
+  rows.push(['模块','维度','题目','你的答案','分数']);
+  const push = function(mod, dim, q, a, s) { rows.push([mod, dim, q, a, s]); };
+  if (R.change) {
+    push('变化率','综合','综合分', String(R.change.total), '最弱:' + R.change.weakest);
+    VAR_SECTIONS.forEach(function(sec) {
+      const r = R.change.raw[sec.id];
+      push('变化率', sec.title, '', '', String(r.score));
+      r.items.forEach(function(it) { push('变化率', sec.title, it.q, it.a, it.qual ? '定性' : ''); });
+    });
+    const sp = R.change.raw.speed;
+    push('变化率','成长速度','','', String(sp.score) + (sp.skipped ? '（未测）' : ''));
+  }
+  if (R.baseline) {
+    const b = R.baseline.raw;
+    push('现状基线','综合','','', '瑞文' + b.raven + ' 数字广度' + b.digit + (b.bmi ? ' BMI' + b.bmi : ''));
+    b.bigFive.forEach(function(d) { push('现状基线','人格', d.label, '', String(d.score)); });
+    if (b.sleep) push('现状基线','健康','睡眠', b.sleep, '');
+  }
+  if (R.env) {
+    push('环境场','综合','','', R.env.summary);
+    ENV_DIMS.forEach(function(d) {
+      const r = R.env.raw[d.id];
+      push('环境场', d.title, '', '', String(r.score));
+      r.items.forEach(function(it) { push('环境场', d.title, it.q, it.a, String(it.s)); });
+    });
+  }
+  if (R.random) {
+    push('随机项','综合','','', R.random.level + ' ' + R.random.avg);
+    RAND_DIMS.forEach(function(d) {
+      const r = R.random.raw[d.id];
+      push('随机项', d.title, '', '', String(r.score));
+      r.items.forEach(function(it) { push('随机项', d.title, it.q, it.a, String(it.s)); });
+    });
+  }
+  const csv = rows.map(function(r) { return r.map(function(c) { const s = String(c == null ? '' : c); return /[",\n]/.test(s) ? '"' + s.replace(/"/g,'""') + '"' : s; }).join(','); }).join('\r\n');
+  const blob = new Blob(['\uFEFF' + csv], { type: 'text/csv;charset=utf-8;' });
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = '个人画像数据表.csv';
+  document.body.appendChild(a); a.click(); document.body.removeChild(a);
+  setTimeout(function() { URL.revokeObjectURL(a.href); }, 1000);
+}
+
+function downloadImage() {
+  const tableHTML = renderDataTableAsTable();
+  const css = [
+    '*{font-family:"PingFang SC","Microsoft YaHei","Segoe UI",sans-serif;box-sizing:border-box;}',
+    'table.dt{width:100%;border-collapse:collapse;font-size:13px;}',
+    'table.dt th,table.dt td{border:1px solid #e5e4df;padding:7px 9px;text-align:left;vertical-align:top;line-height:1.5;color:#2c2c2a;}',
+    'table.dt thead th{background:#faf9f6;color:#888780;font-weight:500;}',
+    'table.dt td.dnum{text-align:center;width:56px;white-space:nowrap;font-weight:500;}',
+    'tr.dt-mod td{background:#E6F1FB;color:#185FA5;font-weight:500;}',
+    'tr.dt-dim td{background:#faf9f6;font-weight:500;}'
+  ].join('');
+  const wrap = '<div style="background:#ffffff;padding:16px;width:680px;">' + tableHTML + '</div>';
+  const full = '<style>' + css + '</style>' + wrap;
+
+  const meas = document.createElement('div');
+  meas.style.cssText = 'position:absolute;left:-9999px;top:0;';
+  meas.innerHTML = full;
+  document.body.appendChild(meas);
+  const W = meas.scrollWidth;
+  const H = meas.scrollHeight;
+  document.body.removeChild(meas);
+
+  const svg = '<svg xmlns="http://www.w3.org/2000/svg" width="' + W + '" height="' + H + '"><foreignObject width="100%" height="100%"><div xmlns="http://www.w3.org/1999/xhtml">' + full + '</div></foreignObject></svg>';
+  const url = 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(svg);
+  const img = new Image();
+  img.onload = function() {
+    const scale = 2;
+    const canvas = document.createElement('canvas');
+    canvas.width = W * scale; canvas.height = H * scale;
+    const ctx = canvas.getContext('2d');
+    ctx.fillStyle = '#ffffff'; ctx.fillRect(0, 0, canvas.width, canvas.height);
+    ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+    try {
+      const a = document.createElement('a');
+      a.download = '个人画像数据表.png';
+      a.href = canvas.toDataURL('image/png');
+      document.body.appendChild(a); a.click(); document.body.removeChild(a);
+    } catch(e) { alert('图片生成失败：' + e.message); }
+  };
+  img.onerror = function() { alert('图片生成失败：当前浏览器不支持该导出方式。'); };
+  img.src = url;
+}
+
+const AI_SYSTEM_PROMPT = `你是一位严谨、克制的人生画像解读助手。你会收到一份「个人画像测评」的原始数据表（由规则引擎计算得出，含四个模块：变化率、现状基线、环境场、随机项）。
+
+你的任务是把这份数据翻译成三段，供用户自省与行动。严格遵守：
+1. 只基于数据表说话，绝不编造表里不存在的信息，不臆测用户的背景。
+2. 绝不重算、修改、质疑数据表里的分数——分数是规则引擎算好的，你只负责解读。
+3. 绝不给出确定性的人生预言。涉及「人生趋势」时只给「条件式区间」，例如"若你维持当前习惯与环境，3–5 年大概率……"，并明确说明这是基于这份数据规则的推演，不是预测未来。
+4. 语气尊重、不羞辱、不贴标签、不夸大。结论前置、可执行、有优先级。
+5. 价值观无好坏，不做道德评判。
+
+请用 Markdown 输出三段：
+### 一、情况说明
+客观描述"这个人在哪、是什么样的人、强项与短板分别是什么"。
+### 二、行动建议
+给出 3 条以内、按优先级排序、具体可执行的建议（每条说明"做什么、为什么、怎么开始"）。
+### 三、人生趋势
+基于数据给 1–2 个「条件式区间」判断（短期 1 年 / 中期 3–5 年），明确标注是推演而非预言。`;
+
+function renderModelOptions() {
+  const available = (cloudModels || []).filter(m => m.disabled !== true);
+  if (available.length === 0) return '<option value="">自动选择</option>';
+  return available.map(m => `<option value="${m.id}">${m.name || m.id}</option>`).join('');
+}
+async function ensureModels() {
+  if (cloudModels && cloudModels.length) return;
+  try { cloudModels = await cloud.llm.models.list(); } catch (e) { return; }
+  const sel = document.getElementById('aiModel');
+  if (sel) {
+    const available = (cloudModels || []).filter(m => m.disabled !== true);
+    if (available.length) sel.innerHTML = available.map(m => `<option value="${m.id}">${m.name || m.id}</option>`).join('');
+  }
+}
+
+async function callAI() {
+  const out = document.getElementById('aiOut');
+  if (!cloud) { out.innerHTML = '<span style="color:var(--bad)">云服务未连接，无法生成解读。</span>'; return; }
+  if (!currentUser) { out.innerHTML = '<span style="color:var(--amber)">请先登录，再使用 AI 深度解读。</span>'; return; }
+  out.innerHTML = '正在生成 AI 解读，请稍候（约 10–30 秒）…';
+  try {
+    const sel = document.getElementById('aiModel');
+    const pick = (list) => { const m = (list || []).find(x => x.disabled !== true); return m ? m.id : ''; };
+    let modelId = sel && sel.value ? sel.value : pick(cloudModels);
+    if (!modelId) { cloudModels = await cloud.llm.models.list(); modelId = pick(cloudModels); }
+    if (!modelId) { out.innerHTML = '<span style="color:var(--bad)">当前没有可用的模型，请稍后再试。</span>'; return; }
+    const userContent = '以下是我的个人画像测评原始数据（JSON）：\n' + JSON.stringify(dataTableJSON(), null, 2) + '\n\n请按规则输出三段解读。';
+    let answer = '';
+    for await (const chunk of cloud.llm.chat.completions.create({
+      model: modelId,
+      messages: [
+        { role: 'system', content: AI_SYSTEM_PROMPT },
+        { role: 'user', content: userContent }
+      ],
+      stream: true,
+      temperature: 0.5
+    })) {
+      const delta = chunk.choices && chunk.choices[0] && chunk.choices[0].delta;
+      if (delta && delta.content) answer += delta.content;
+    }
+    out.innerHTML = answer ? mdToHtml(answer) : '<span style="color:var(--bad)">模型没有返回内容。</span>';
+  } catch (e) {
+    out.innerHTML = '<span style="color:var(--bad)">生成失败：' + escapeHtml(e.message || String(e)) + '</span>';
+  }
+}
+
+/* ============================================================
+   云服务连通性检查
+============================================================ */
+async function verifyCloud() {
+  const el = document.getElementById('cloudStatus');
+  const set = (t, c) => { if (el) { el.textContent = t; el.style.color = c || ''; } };
+  if (!cloud) { set('SDK 未加载', 'var(--bad)'); return; }
+  set('检测中…', '');
+  try {
+    cloudModels = await cloud.llm.models.list();
+    cloudOk = true;
+    set('已连接', 'var(--good)');
+  } catch (e) {
+    cloudOk = false;
+    console.error('云服务连通失败：', e);
+    set('连接失败', 'var(--bad)');
+  }
+}
+
+/* ============================================================
+   登录（手机号验证码）
+============================================================ */
+async function initAuth() {
+  if (!cloud) return;
+  try {
+    const { data: session, error } = await cloud.auth.getSession();
+    if (!error && session && session.user) { currentUser = session.user; render(); }
+  } catch (e) { console.error('恢复登录状态失败：', e); }
+}
+function renderAuthBar() {
+  if (!currentUser) {
+    return `<button class="btn" onclick="openLogin()">登录</button> <span class="sub">登录后可保存测评结果、解锁 AI 深度解读</span>`;
+  }
+  const name = currentUser.name || currentUser.phone || currentUser.email || '已登录';
+  return `<span class="tag done">已登录</span> <b>${name}</b> <button class="btn ghost" onclick="doSignOut()">登出</button>`;
+}
+function openLogin() {
+  const el = document.getElementById('loginModal');
+  el.className = 'modal-mask';
+  el.innerHTML = `<div class="modal-box">
+    <h2 style="margin-bottom:6px;">登录</h2>
+    <p class="sub" style="margin-bottom:14px;">登录后可保存测评结果、解锁 AI 深度解读。</p>
+    <div class="field"><label>手机号</label><input id="lgPhone" type="tel" inputmode="numeric" placeholder="11 位手机号"></div>
+    <div class="field"><label>验证码</label><div style="display:flex; gap:8px;"><input id="lgCode" type="text" inputmode="numeric" placeholder="6 位验证码" style="flex:1;"><button class="btn" id="lgSend" onclick="sendCode()">获取验证码</button></div></div>
+    <div id="lgMsg" class="sub" style="margin-bottom:10px; min-height:18px;"></div>
+    <button class="btn primary" style="width:100%;" onclick="doLogin()">登录 / 注册</button>
+    <button class="btn ghost" style="width:100%;" onclick="closeLogin()">取消</button>
+  </div>`;
+}
+function closeLogin() {
+  const el = document.getElementById('loginModal');
+  el.className = 'hidden'; el.innerHTML = '';
+}
+async function sendCode() {
+  const phone = document.getElementById('lgPhone').value.trim();
+  const msg = document.getElementById('lgMsg');
+  if (!/^1\d{10}$/.test(phone)) { msg.innerHTML = '<span style="color:var(--bad)">请输入正确的 11 位手机号</span>'; return; }
+  const btn = document.getElementById('lgSend');
+  btn.disabled = true; msg.textContent = '正在发送验证码…';
+  try {
+    const sent = await cloud.auth.sendOtp({ phone });
+    if (sent.error) { msg.innerHTML = '<span style="color:var(--bad)">' + sent.error.message + '</span>'; return; }
+    pendingOtp = { phone, verificationId: sent.data.verificationId, isExistingUser: sent.data.isExistingUser };
+    msg.innerHTML = '<span style="color:var(--good)">验证码已发送，请查收短信</span>';
+  } catch (e) {
+    msg.innerHTML = '<span style="color:var(--bad)">发送失败：' + (e.message || e) + '</span>';
+  } finally {
+    btn.disabled = false;
+  }
+}
+async function doLogin() {
+  const phone = document.getElementById('lgPhone').value.trim();
+  const code = document.getElementById('lgCode').value.trim();
+  const msg = document.getElementById('lgMsg');
+  if (!pendingOtp || pendingOtp.phone !== phone) { msg.innerHTML = '<span style="color:var(--bad)">请先获取验证码</span>'; return; }
+  if (!code) { msg.innerHTML = '<span style="color:var(--bad)">请输入验证码</span>'; return; }
+  msg.textContent = '登录中…';
+  try {
+    const completed = await cloud.auth.verifyOtp({ phone: pendingOtp.phone, verificationId: pendingOtp.verificationId, isExistingUser: pendingOtp.isExistingUser, token: code });
+    if (completed.error) { msg.innerHTML = '<span style="color:var(--bad)">' + completed.error.message + '</span>'; return; }
+    pendingOtp = null;
+    currentUser = completed.data.user;
+    closeLogin();
+    render();
+  } catch (e) {
+    msg.innerHTML = '<span style="color:var(--bad)">登录失败：' + (e.message || e) + '</span>';
+  }
+}
+async function doSignOut() {
+  try { await cloud.auth.signOut(); } catch (e) {}
+  currentUser = null;
+  render();
+}
+
+/* ============================================================
+   数据持久化（测评结果存云端）
+============================================================ */
+const MODULE_LABEL = { change: '变化率', baseline: '现状基线', env: '环境场', random: '随机项' };
+async function saveResult(module, summary, result) {
+  if (!cloud || !currentUser) return;   // 未登录不存
+  try {
+    const { error } = await cloud.database
+      .from('assessment_records')
+      .insert({ module, summary, result, owner_name: currentUser.name || null });
+    if (error) console.error('保存结果失败：', error);
+  } catch (e) { console.error('保存结果异常：', e); }
+}
+async function renderHistory(app) {
+  app.innerHTML = `<div class="card">${topbar('我的历史报告', "view='home';render()")}
+    <h2>我的测评历史</h2><p class="sub">按时间倒序，点「查看」回看某次的详细结果。</p></div>
+    <div id="historyList" class="card"><p class="sub">加载中…</p></div>`;
+  if (!currentUser) { document.getElementById('historyList').innerHTML = '<p class="sub">请先登录，再查看你的历史报告。</p>'; return; }
+  const { data, error } = await cloud.database
+    .from('assessment_records')
+    .select('id, module, summary, result, created_at')
+    .order('created_at', { ascending: false })
+    .limit(50);
+  if (error) { document.getElementById('historyList').innerHTML = '<p class="sub" style="color:var(--bad)">加载失败：' + error.message + '</p>'; return; }
+  historyRecords = data || [];
+  const listEl = document.getElementById('historyList');
+  if (!historyRecords.length) { listEl.innerHTML = '<p class="sub">还没有记录，先去做一个模块，结果会自动存下来。</p>'; return; }
+  listEl.innerHTML = historyRecords.map(r => {
+    const t = new Date(r.created_at).toLocaleString('zh-CN', { hour12: false });
+    return `<div class="module"><div>
+      <div class="m-title">${MODULE_LABEL[r.module] || r.module}</div>
+      <div class="m-sum">${r.summary || ''}</div>
+      <div class="m-desc">${t}</div>
+    </div>
+    <div style="display:flex; gap:6px;">
+      <button class="btn primary" onclick="viewHistory(${r.id})">查看</button>
+      <button class="btn ghost" onclick="deleteHistory(${r.id})">删除</button>
+    </div></div>`;
+  }).join('');
+}
+function viewHistory(id) {
+  const rec = historyRecords.find(r => r.id === id);
+  if (!rec) return;
+  if (rec.module === 'change') R.change = rec.result;
+  else if (rec.module === 'baseline') R.baseline = rec.result;
+  else if (rec.module === 'env') R.env = rec.result;
+  else if (rec.module === 'random') R.random = rec.result;
+  historyNote = '历史记录 · ' + new Date(rec.created_at).toLocaleString('zh-CN', { hour12: false });
+  const map = { change: 'var-result', baseline: 'base-result', env: 'env-result', random: 'rand-result' };
+  view = map[rec.module] || 'home';
+  render();
+}
+async function deleteHistory(id) {
+  if (!confirm('确定删除这条记录吗？删除后不可恢复。')) return;
+  const { error } = await cloud.database.from('assessment_records').delete().eq('id', id);
+  if (error) { alert('删除失败：' + error.message); return; }
+  historyRecords = historyRecords.filter(r => r.id !== id);
+  renderHistory(document.getElementById('app'));
+}
+
+/* ============================================================
+   启动
+============================================================ */
+render();
+verifyCloud();
+initAuth();
+</script>
+</body>
+</html>
