@@ -29,12 +29,12 @@
     padding: 72px 0 48px;
   }
   .avatar {
-    width: 72px; height: 72px; margin: 0 auto 20px;
+    width: 88px; height: 88px; margin: 0 auto 20px;
     border-radius: 50%;
-    background: var(--accent);
-    color: #fff;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 30px; font-weight: 500;
+    object-fit: cover;
+    display: block;
+    border: 3px solid #fff;
+    box-shadow: 0 2px 12px rgba(0,0,0,.10);
   }
   h1 { font-size: 34px; font-weight: 600; letter-spacing: 0.5px; }
   .domain { font-size: 15px; color: var(--accent); font-weight: 500; margin-top: 4px; }
@@ -69,6 +69,28 @@
   .card h2 { font-size: 17px; font-weight: 600; margin-bottom: 6px; }
   .card p { font-size: 13px; color: var(--muted); }
 
+  .about {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
+    align-items: center;
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    padding: 28px;
+    margin-bottom: 48px;
+  }
+  .about img {
+    width: 100%;
+    display: block;
+    border-radius: 10px;
+    background: #f0efeb;
+  }
+  .about h2 { font-size: 20px; font-weight: 600; }
+  .about .role { color: var(--accent); font-size: 14px; font-weight: 500; margin: 4px 0 14px; }
+  .about p { font-size: 14px; color: var(--muted); }
+  .about p + p { margin-top: 10px; }
+
   footer {
     text-align: center;
     padding: 32px 0 48px;
@@ -80,13 +102,14 @@
   @media (max-width: 720px) {
     .sections { grid-template-columns: repeat(2, 1fr); }
     header { padding: 48px 0 32px; }
+    .about { grid-template-columns: 1fr; gap: 20px; padding: 20px; }
   }
 </style>
 </head>
 <body>
   <div class="wrap">
     <header>
-      <div class="avatar">浩</div>
+      <img class="avatar" src="images/avatar.jpg" alt="陈浩然" width="88" height="88">
       <h1>浩然成长空间</h1>
       <div class="domain">chr9.com</div>
       <p class="intro">成长从这里开始，永不停止</p>
@@ -114,6 +137,16 @@
         <p>来聊聊，留下你的想法</p>
       </a>
     </div>
+
+    <section class="about">
+      <img src="images/blackboard.jpg" alt="动量与动量定理板书" loading="lazy">
+      <div>
+        <h2>关于我</h2>
+        <div class="role">陈浩然 · 物理培训老师 · 长沙县竞博教育</div>
+        <p>白天在黑板前讲动量与能量，晚上在这里整理用过的东西。这个站是我的数字书房——导航、资料、工具，一件件往里收。</p>
+        <p>黑板上的公式总要擦掉，写下来的会留下。</p>
+      </div>
+    </section>
 
     <footer>
       <p>© 2026 chr9.com · 用心沉淀，慢慢生长</p>
