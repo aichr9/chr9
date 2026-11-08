@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>文档再厚，不如一张能照着做的纸 · 浩然成长空间</title>
+<style>
+  :root {
+    --bg: #f7f7f5;
+    --card: #ffffff;
+    --text: #1a1a1a;
+    --muted: #6b6b66;
+    --line: #e5e4df;
+    --accent: #0f6e56;
+    --accent-soft: #e1f5ee;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: -apple-system, "PingFang SC", "Microsoft YaHei", "Segoe UI", sans-serif;
+    line-height: 1.85;
+    -webkit-font-smoothing: antialiased;
+  }
+  .wrap { max-width: 680px; margin: 0 auto; padding: 0 24px; }
+  header { padding: 48px 0 16px; }
+  .back { color: var(--accent); text-decoration: none; font-size: 14px; }
+  .kicker {
+    display: inline-block; font-size: 12px; padding: 2px 10px; border-radius: 999px;
+    background: var(--accent-soft); color: var(--accent); margin: 14px 0 8px;
+  }
+  h1 { font-size: 26px; font-weight: 600; line-height: 1.4; margin-bottom: 8px; }
+  .meta { color: var(--muted); font-size: 13px; margin-bottom: 32px; }
+
+  .article p { margin-bottom: 22px; font-size: 16px; }
+  .article h2 { font-size: 19px; font-weight: 600; margin: 36px 0 14px; }
+  .article blockquote {
+    border-left: 3px solid var(--accent);
+    background: var(--accent-soft);
+    padding: 10px 16px;
+    margin: 24px 0;
+    color: var(--muted);
+    font-size: 14px;
+    border-radius: 0 8px 8px 0;
+  }
+  .article strong { color: var(--text); }
+  .article hr { border: none; border-top: 1px solid var(--line); margin: 36px 0; }
+  .article .note { font-size: 13px; color: var(--muted); font-style: italic; }
+
+  footer { padding: 32px 0 48px; color: var(--muted); font-size: 13px; }
+  footer a { color: var(--accent); text-decoration: none; }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <a class="back" href="growth.html">← 返回成长通识</a>
+      <div class="kicker">成长通识 · 第二篇</div>
+      <h1>文档再厚，不如一张能照着做的纸</h1>
+      <div class="meta">归档于 2026-11-08</div>
+    </header>
+
+    <div class="article">
+      <blockquote>这篇记的是两天里我真实经历的事：被一个 AI 骂、深夜破戒、把一个工具修了五六遍。不是想通之后的总结，是当时的感受还没凉透就写下来。</blockquote>
+
+      <h2>被骂的那一下</h2>
+      <p>前天我让另一个 AI 审我的成长计划文档。它说这份东西是「能力词典」，不是「实施计划」。</p>
+      <p>我第一反应是不服气——我写了快一千行，改了五轮，你说它不是计划？可往下读，又觉得它说得对。循环论证、复合条件算不了账、L3 和 L5 都在讲"教人"。它挑的每一个毛病，我都没法反驳，只能跟人说一句「哎，它说的好重啊」。</p>
+      <p>其实难受的不是被挑错。是我自己心里一直知道这文档有点虚，只是没人点破，我也就顺着往下写。真被点破了，才承认：<strong>我折腾半天，写出来的还是一本词典，不是一张能照着做的计划。</strong></p>
+      <p>词典很厚，厚得让人有安全感。但那不是我要的东西。</p>
+
+      <h2>深夜那两下</h2>
+      <p>昨天晚上又弄网站弄到 12 点多。自己定的规矩，自己破。科一没刷，网站碰了一晚上。明早八点有课，心里清楚该睡了，手上停不下来。说"拜拜"的时候，还惦记着手机上那个链接显示不完整。</p>
+      <p>今天早上想这件事，倒没那么自责了。破戒不是第一次，也不会是最后一次。但我发现一个规律：<strong>每次深夜停不下来的，都是「快弄完了」的那种事。</strong>链接差一个参数、页面差一个入口，总觉得再点两下就成了。就是这两下，把睡眠、把科一，全挤掉了。</p>
+      <p>规则不是用来让自己永远不破的，是破了之后，知道自己破在哪。</p>
+
+      <h2>剥洋葱</h2>
+      <p>打卡那个工具，修了五六次才跑通。先是点进去回到主页，然后打卡框点不动，然后 upsert 参数写错，最后发现数据库的行级安全根本没开。一层一层的。</p>
+      <p>跑通的那一刻，我没多高兴。我问的是：我现在对这套东西的能力保持怀疑，流程上要不要优化？</p>
+      <p>这不是谦虚，是真怀疑。我意识到一件事：<strong>前面这些坑，几乎全是凭记忆写代码写出来的。</strong>没先查文档，没先看数据库真实状态，写完就说"好了"，让我去当人肉测试机，我一个坑一个坑地踩。</p>
+      <p>所以我坚持要把流程落成文件，不要靠什么"我会记住"。靠记住没用，会忘，会变。得白纸黑字，写一条是一条。最后定了那份清单：动手前先查证，交付前自己测。这件事本身，比打卡工具能不能用，重要得多。</p>
+
+      <h2>今天松了一下</h2>
+      <p>今天我说了一句："网站不用冻结了，碎片时间也能搞。"</p>
+      <p>说出口的时候，自己松了一下。之前把网站冻结，是怕它吃掉科一的时间。但今天想明白了——<strong>吃时间的从来不是网站，是我那种"差两下就弄完"的劲。</strong>堵住这个，碎片时间弄弄网站，没什么不好。</p>
+      <p>科一还是那根线。科一没刷，网站不碰，这条没变。</p>
+
+      <hr>
+      <p class="note">归档于 2026-11-08</p>
+    </div>
+
+    <footer>
+      <a href="index.html">浩然成长空间</a> · chr9.com
+    </footer>
+  </div>
+</body>
+</html>
